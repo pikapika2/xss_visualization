@@ -1,7 +1,8 @@
 export default function Home() {
   return (
-    <div>
-      <h1 className="text">Hello World!</h1>
-    </div>
+    <home>
+      <div>サイト１</div>
+      <div>サイト２</div>
+    </home>
   )
 }
