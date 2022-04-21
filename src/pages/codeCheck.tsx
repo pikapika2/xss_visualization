@@ -4,8 +4,8 @@ const CodeCheck: React.FC<Props> = ({ addText, onChange }) => {
   if (addText === 'undefined' || addText.length === 0) {
     return <div>not data</div>
   }
-  const testArr = /<a /
-  const result = testArr.test(addText)
+  const aTag = /<a /
+  const result = aTag.test(addText)
   console.log(result)
   if (result === true) {
     return (
