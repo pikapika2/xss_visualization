@@ -4,13 +4,13 @@ const CodeCheck: React.FC<Props> = ({ addText, onChange }) => {
   if (addText === 'undefined' || addText.length === 0) {
     return <div>not data</div>
   }
-  const testArr = /abc/
+  const testArr = /<a /
   const result = testArr.test(addText)
   console.log(result)
   if (result === true) {
     return (
       <home>
-        <div>aaa</div>
+        <div>何かが起こるかもしれない</div>
         <div> {addText} </div>
       </home>
     )
@@ -18,6 +18,7 @@ const CodeCheck: React.FC<Props> = ({ addText, onChange }) => {
 
   return (
     <home>
+      <div>特に何も起こらない…</div>
       <div> {addText} </div>
     </home>
   )
