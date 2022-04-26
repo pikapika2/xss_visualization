@@ -6,11 +6,12 @@ export default function Home() {
   const [addText, setAddText] = useState('')
 
   return (
-    <home>
-      <div className="bulletinBoard">
-        <p>
+    <React.Fragment>
+      <div className="bulletin_board">
+        <p className="site_name">
           掲示板サイト１(この掲示板は対策0でinnerHTMLを使って出力していると想定)
         </p>
+        <CodeCheck addText={addText} />
         <input
           value={text}
           onChange={(event) => setText(event.target.value)}
@@ -18,12 +19,11 @@ export default function Home() {
           maxLength="100"
         />
         <button onClick={(event) => setAddText(text)}>これを仕掛ける</button>
-        <p>ボタンクリック：{addText}</p>
       </div>
-      <CodeCheck addText={addText} />
-      <div>
+      <p>入力された文字列：{addText}</p>
+      <div className="site_name">
         サイト２(一応悪意ある想定、踏むだけで終わる)(http://example1.com)
       </div>
-    </home>
+    </React.Fragment>
   )
 }

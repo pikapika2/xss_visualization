@@ -1,7 +1,14 @@
-.text{
-	font-size: 100px;
+.bulletin_board{
+	border: 2px solid;
+	width: 50%;
 }
 
-.bulletinBoard{
+.site_name{
+	font-size: 20px;
+	font-weight: bold;
 	border: 1px solid;
+	border-color: blue;
+	border-radius: 10px;
+	display: inline-block;
+	box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);
 }

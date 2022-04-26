@@ -13,10 +13,10 @@ const CodeCheck: React.FC<Props> = ({ addText, onChange }) => {
   }
 
   return (
-    <home>
-      <div>特に何も起こらない…</div>
-      <div> {addText} </div>
-    </home>
+    <React.Fragment>
+      <p>特に何も起こらない…</p>
+      <p> {addText} </p>
+    </React.Fragment>
   )
 }
 

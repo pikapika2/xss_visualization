@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 function AHref(code) {
   return (
-    <home>
+    <React.Fragment>
       <div>何かが起こるかもしれない</div>
       <div> {code} </div>
       <div
@@ -10,7 +10,7 @@ function AHref(code) {
           __html: code,
         }}
       ></div>
-    </home>
+    </React.Fragment>
   )
 }
 
