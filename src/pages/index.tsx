@@ -8,11 +8,14 @@ export default function Home() {
   return (
     <home>
       <div>
-        <p>掲示板サイト１</p>
+        <p>
+          掲示板サイト１(この掲示板は対策0でinnerHTMLを使って出力していると想定)
+        </p>
         <input
           value={text}
           onChange={(event) => setText(event.target.value)}
           name="ここにスクリプト混入させたい"
+          maxLength="100"
         />
         <button onClick={(event) => setAddText(text)}>これを仕掛ける</button>
         <p>ボタンクリック：{addText}</p>
