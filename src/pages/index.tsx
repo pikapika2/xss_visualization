@@ -7,7 +7,7 @@ export default function Home() {
 
   return (
     <home>
-      <div>
+      <div className="bulletinBoard">
         <p>
           掲示板サイト１(この掲示板は対策0でinnerHTMLを使って出力していると想定)
         </p>
