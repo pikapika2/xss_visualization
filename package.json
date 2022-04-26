@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "eslint-config-prettier": "8.5.0",
+    "leader-line-new": "^1.1.9",
     "next": "12.1.5",
     "react": "18.0.0",
     "react-dom": "18.0.0"
