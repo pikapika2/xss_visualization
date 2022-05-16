@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import Xarrow from 'react-xarrows'
 import CodeCheck from './codeCheck'
 import Image from 'next/image'
@@ -10,18 +10,6 @@ export default function Home() {
   //const [links, setLinks] = useState(initialLinks)
   const [text, setText] = useState('')
   const [addText, setAddText] = useState('')
-  const startRef = React.useRef() //<HTMLDivElement>(null);
-  const endRef = React.useRef() //<HTMLDivElement>(null);
-
-  useEffect(() => {
-    //let start = document.getElementById('black_human')
-    //let end = document.getElementById('normal_human')
-    //new LeaderLine(startRef.current, endRef.current, {startSocket:"right", endSocket:"left"})
-    /*if(start && end){
-        const exampleLinks = new LeaderLine(start, end)
-      }*/
-    console.log(document.getElementById('black_human'))
-  }, [startRef, endRef])
 
   return (
     <React.Fragment>
