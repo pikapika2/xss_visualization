@@ -1,11 +1,27 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
+import Xarrow from 'react-xarrows'
 import CodeCheck from './codeCheck'
 import Image from 'next/image'
 import phishingImage from '../image/phishing.png'
+import crackerImage from '../image/warumono.png'
+import humanImage from '../image/computer_woman.png'
 
 export default function Home() {
+  //const [links, setLinks] = useState(initialLinks)
   const [text, setText] = useState('')
   const [addText, setAddText] = useState('')
+  const startRef = React.useRef() //<HTMLDivElement>(null);
+  const endRef = React.useRef() //<HTMLDivElement>(null);
+
+  useEffect(() => {
+    //let start = document.getElementById('black_human')
+    //let end = document.getElementById('normal_human')
+    //new LeaderLine(startRef.current, endRef.current, {startSocket:"right", endSocket:"left"})
+    /*if(start && end){
+        const exampleLinks = new LeaderLine(start, end)
+      }*/
+    console.log(document.getElementById('black_human'))
+  }, [startRef, endRef])
 
   return (
     <React.Fragment>
@@ -31,7 +47,11 @@ export default function Home() {
         <br />
         <Image className="site_img" src={phishingImage} />
       </div>
-      <div className="right_side">テスト</div>
+      <div className="right_side">
+        <Image id="black_human" src={crackerImage} />
+        <Image id="normal_human" src={humanImage} />
+      </div>
+      <Xarrow start="black_human" end="normal_human" />
     </React.Fragment>
   )
 }
