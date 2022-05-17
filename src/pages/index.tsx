@@ -5,11 +5,15 @@ import Image from 'next/image'
 import phishingImage from '../image/phishing.png'
 import crackerImage from '../image/warumono.png'
 import humanImage from '../image/computer_woman.png'
+import sleep from './sleep'
 
-export default function Home() {
+export default function Home(): Promise<void> {
   //const [links, setLinks] = useState(initialLinks)
   const [text, setText] = useState('')
   const [addText, setAddText] = useState('')
+
+  //await sleep(1000)
+  //console.log("qqq")
 
   return (
     <React.Fragment>
