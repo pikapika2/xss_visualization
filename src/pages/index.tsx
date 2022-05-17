@@ -1,27 +1,19 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import Xarrow from 'react-xarrows'
 import CodeCheck from './codeCheck'
 import Image from 'next/image'
 import phishingImage from '../image/phishing.png'
 import crackerImage from '../image/warumono.png'
 import humanImage from '../image/computer_woman.png'
+import sleep from './sleep'
 
-export default function Home() {
+export default function Home(): Promise<void> {
   //const [links, setLinks] = useState(initialLinks)
   const [text, setText] = useState('')
   const [addText, setAddText] = useState('')
-  const startRef = React.useRef() //<HTMLDivElement>(null);
-  const endRef = React.useRef() //<HTMLDivElement>(null);
 
-  useEffect(() => {
-    //let start = document.getElementById('black_human')
-    //let end = document.getElementById('normal_human')
-    //new LeaderLine(startRef.current, endRef.current, {startSocket:"right", endSocket:"left"})
-    /*if(start && end){
-        const exampleLinks = new LeaderLine(start, end)
-      }*/
-    console.log(document.getElementById('black_human'))
-  }, [startRef, endRef])
+  //await sleep(1000)
+  //console.log("qqq")
 
   return (
     <React.Fragment>
