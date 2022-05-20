@@ -5,7 +5,6 @@ import Image from 'next/image'
 import phishingImage from '../image/phishing.png'
 import crackerImage from '../image/warumono.png'
 import humanImage from '../image/computer_woman.png'
-import sleep from './sleep'
 
 export default function Home(): Promise<void> {
   //const [links, setLinks] = useState(initialLinks)
