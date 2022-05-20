@@ -3,7 +3,11 @@ import AHref from './Ahref'
 
 const CodeCheck: React.FC<Props> = ({ addText, onChange }) => {
   if (addText === 'undefined' || addText.length === 0) {
-    return <p className="default_text">(ここに入力結果が表示されます)</p>
+    return (
+      <p className="default_text" id="dangerousHTML">
+        (ここに入力結果が表示されます)
+      </p>
+    )
   }
   const aTag = /<a href="https?:\/\/([\w-]+\.)+[\w-]+(\/[\w-./?%&=]*)?">/
   const resultATag = aTag.test(addText)
@@ -15,7 +19,7 @@ const CodeCheck: React.FC<Props> = ({ addText, onChange }) => {
   return (
     <React.Fragment>
       <p>特に何も起こらない…</p>
-      <p> {addText} </p>
+      <p id="dangerousHTML"> {addText} </p>
     </React.Fragment>
   )
 }
