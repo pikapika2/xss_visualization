@@ -1,15 +1,19 @@
 import React, { useState } from 'react'
+import Xarrow from 'react-xarrows'
 
 function AHref(code) {
   return (
     <React.Fragment>
       <div>何かが起こるかもしれない</div>
       <div> {code} </div>
-      <div
+      <span
+        id="dangerousHTML"
         dangerouslySetInnerHTML={{
           __html: code,
         }}
-      ></div>
+      ></span>
+      <br />
+      <Xarrow start="dangerousHTML" end="normal_human" />
     </React.Fragment>
   )
 }

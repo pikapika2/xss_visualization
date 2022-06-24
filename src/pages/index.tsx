@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Xarrow from 'react-xarrows'
 import CodeCheck from './codeCheck'
+import OneStep from './oneStep'
 import Image from 'next/image'
 import phishingImage from '../image/phishing.png'
 import crackerImage from '../image/warumono.png'
 import humanImage from '../image/computer_woman.png'
-import sleep from './sleep'
 
 export default function Home(): Promise<void> {
   //const [links, setLinks] = useState(initialLinks)
@@ -30,6 +30,7 @@ export default function Home(): Promise<void> {
             maxLength="100"
           />
           <button onClick={(event) => setAddText(text)}>これを仕掛ける</button>
+          <OneStep />
         </div>
         <p>入力された文字列：{addText}</p>
         <p className="site_name">
@@ -37,13 +38,13 @@ export default function Home(): Promise<void> {
           <br />
         </p>
         <br />
-        <Image className="site_img" src={phishingImage} />
+        <Image className="site_img" id="dangerousWebsite" src={phishingImage} />
       </div>
       <div className="right_side">
         <Image id="black_human" src={crackerImage} />
         <Image id="normal_human" src={humanImage} />
       </div>
-      <Xarrow start="black_human" end="normal_human" />
+      <Xarrow start="black_human" end="normal_human" showXarrow={true} />
     </React.Fragment>
   )
 }
