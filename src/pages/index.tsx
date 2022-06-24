@@ -6,6 +6,7 @@ import Image from 'next/image'
 import phishingImage from '../image/phishing.png'
 import crackerImage from '../image/warumono.png'
 import humanImage from '../image/computer_woman.png'
+import sabaImage from '../image/mainsaba.png'
 
 export default function Home(): Promise<void> {
   //const [links, setLinks] = useState(initialLinks)
@@ -19,9 +20,7 @@ export default function Home(): Promise<void> {
     <React.Fragment>
       <div className="left_side">
         <div className="bulletin_board">
-          <p className="site_name">
-            掲示板サイト１(この掲示板は対策0でinnerHTMLを使って出力していると想定)
-          </p>
+          <p className="site_name">掲示板サイト１(ユーザ側)</p>
           <CodeCheck addText={addText} />
           <input
             value={text}
@@ -33,11 +32,14 @@ export default function Home(): Promise<void> {
           <OneStep />
         </div>
         <p>入力された文字列：{addText}</p>
-        <p className="site_name">
-          サイト２(一応悪意ある想定、踏むだけで終わる)(http://example1.com)
+        <div className="saba">
+          <Image className="site_img" src={sabaImage} />
+          <p>提供サーバ</p>
+        </div>
+        <div className="bulletin_board">
+          <p className="site_name">サイト(クラッカー側)</p>
           <br />
-        </p>
-        <br />
+        </div>
         <Image className="site_img" id="dangerousWebsite" src={phishingImage} />
       </div>
       <div className="right_side">
