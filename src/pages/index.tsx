@@ -19,8 +19,17 @@ export default function Home(): Promise<void> {
   return (
     <React.Fragment>
       <div className="left_side">
-        <div className="bulletin_board">
+        <div className="bulletin_board" id="userSide">
           <p className="site_name">掲示板サイト１(ユーザ側)</p>
+          <CodeCheck addText={addText} />
+        </div>
+        <p>入力された文字列：{addText}</p>
+        <div className="saba">
+          <Image className="site_img" id="mainSaba" src={sabaImage} />
+          <p>提供サーバ</p>
+        </div>
+        <div className="bulletin_board" id="crackerSide">
+          <p className="site_name">サイト(クラッカー側)</p>
           <CodeCheck addText={addText} />
           <input
             value={text}
@@ -30,14 +39,6 @@ export default function Home(): Promise<void> {
           />
           <button onClick={(event) => setAddText(text)}>これを仕掛ける</button>
           <OneStep />
-        </div>
-        <p>入力された文字列：{addText}</p>
-        <div className="saba">
-          <Image className="site_img" src={sabaImage} />
-          <p>提供サーバ</p>
-        </div>
-        <div className="bulletin_board">
-          <p className="site_name">サイト(クラッカー側)</p>
           <br />
         </div>
         <Image className="site_img" id="dangerousWebsite" src={phishingImage} />
@@ -46,7 +47,18 @@ export default function Home(): Promise<void> {
         <Image id="black_human" src={crackerImage} />
         <Image id="normal_human" src={humanImage} />
       </div>
-      <Xarrow start="black_human" end="normal_human" showXarrow={true} />
+      <Xarrow
+        start="userSide"
+        end="mainSaba"
+        headSize={0.1}
+        headShape="circle"
+      />
+      <Xarrow
+        start="crackerSide"
+        end="mainSaba"
+        headSize={0.1}
+        headShape="circle"
+      />
     </React.Fragment>
   )
 }

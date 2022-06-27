@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Xarrow from 'react-xarrows'
 
-function AHref(code) {
+const AHref: React.FC<Props> = (code) => {
   return (
     <React.Fragment>
       <div>何かが起こるかもしれない</div>
