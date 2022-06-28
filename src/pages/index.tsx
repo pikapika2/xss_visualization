@@ -25,7 +25,6 @@ export default function Home(): Promise<void> {
           <p className="site_name">掲示板サイト１(ユーザ側)</p>
           <OutputMessageUser addText={addText} />
         </div>
-        <p>入力された文字列：{addText}</p>
         <div className="saba">
           <Image className="site_img" id="mainSaba" src={sabaImage} />
           <p>提供サーバ</p>
@@ -36,7 +35,7 @@ export default function Home(): Promise<void> {
           <input
             value={text}
             onChange={(event) => setText(event.target.value)}
-            name="ここにスクリプト混入させたい"
+            className="textbox"
             maxLength="100"
           />
           <button onClick={(event) => setAddText(text)}>これを仕掛ける</button>
@@ -46,6 +45,7 @@ export default function Home(): Promise<void> {
         <Image className="site_img" id="dangerousWebsite" src={phishingImage} />
       </div>
       <div className="right_side">
+        <p className="code_plaintext">入力された文字列：{addText}</p>
         <Image id="black_human" src={crackerImage} />
         <Image id="normal_human" src={humanImage} />
       </div>
