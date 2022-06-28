@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Xarrow from 'react-xarrows'
-import CodeCheck from './codeCheck'
+import OutputMessageUser from './outputMessageUser'
+import OutputMessageCracker from './outputMessageCracker'
+import AHref from './aHref'
 import OneStep from './oneStep'
 import Image from 'next/image'
 import phishingImage from '../image/phishing.png'
@@ -21,7 +23,7 @@ export default function Home(): Promise<void> {
       <div className="left_side">
         <div className="bulletin_board" id="userSide">
           <p className="site_name">掲示板サイト１(ユーザ側)</p>
-          <CodeCheck addText={addText} />
+          <OutputMessageUser addText={addText} />
         </div>
         <p>入力された文字列：{addText}</p>
         <div className="saba">
@@ -30,7 +32,7 @@ export default function Home(): Promise<void> {
         </div>
         <div className="bulletin_board" id="crackerSide">
           <p className="site_name">サイト(クラッカー側)</p>
-          <CodeCheck addText={addText} />
+          <OutputMessageCracker addText={addText} />
           <input
             value={text}
             onChange={(event) => setText(event.target.value)}
