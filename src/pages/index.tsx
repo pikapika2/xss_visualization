@@ -1,29 +1,42 @@
-import React, { useEffect, useState } from 'react'
+import React, { createContext, useState } from 'react'
 import Xarrow from 'react-xarrows'
 import OutputMessageUser from './outputMessageUser'
 import OutputMessageCracker from './outputMessageCracker'
 import AHref from './aHref'
 import OneStep from './oneStep'
+import AddImageSaba from './addImageSaba'
 import Image from 'next/image'
 import phishingImage from '../image/phishing.png'
 import crackerImage from '../image/warumono.png'
 import humanImage from '../image/computer_woman.png'
 import sabaImage from '../image/mainsaba.png'
 
+/*interface correctNameInterface {
+  correctName: string
+
+}*/
+
+//export const CorrectSaba = createContext({} as correctNameInterface)
+export const CorrectSaba = createContext()
+
 export default function Home(): Promise<void> {
   //const [links, setLinks] = useState(initialLinks)
-  const [text, setText] = useState('')
-  const [addText, setAddText] = useState('')
-
-  //await sleep(1000)
-  //console.log("qqq")
+  const [text, setText] = useState<string>('')
+  const [addText, setAddText] = useState<string>('')
+  const [correctName, setCorrectName] = useState<string>('')
+  const value = {
+    correctName,
+    setCorrectName,
+  }
 
   return (
     <React.Fragment>
       <div className="left_side">
         <div className="bulletin_board" id="userSide">
           <p className="site_name">掲示板サイト１(ユーザ側)</p>
-          <OutputMessageUser addText={addText} />
+          <CorrectSaba.Provider value={value}>
+            <OutputMessageUser addText={addText} />
+          </CorrectSaba.Provider>
         </div>
         <div className="saba">
           <Image className="site_img" id="mainSaba" src={sabaImage} />
@@ -48,6 +61,7 @@ export default function Home(): Promise<void> {
         <p className="code_plaintext">入力された文字列：{addText}</p>
         <Image id="black_human" src={crackerImage} />
         <Image id="normal_human" src={humanImage} />
+        <AddImageSaba imageText={correctName} />
       </div>
       <Xarrow
         start="userSide"
