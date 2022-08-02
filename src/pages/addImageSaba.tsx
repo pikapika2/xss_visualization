@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
+import Xarrow from 'react-xarrows'
 import fakeSabaImage from '../image/mainsaba.png'
 
 const AddImageSaba: React.FC<Props> = ({ imageText, onChange }) => {
@@ -9,8 +10,12 @@ const AddImageSaba: React.FC<Props> = ({ imageText, onChange }) => {
 
   return (
     <React.Fragment>
-      <Image id="fake_saba" src={fakeSabaImage} />
-      <p> {imageText} </p>
+      <div>
+        <Image id="fakeSaba" src={fakeSabaImage} />
+        <p> {imageText} </p>
+      </div>
+      <Xarrow start="dangerousHTML" end="normal_human" />
+      <Xarrow start="dangerousHTML" end="fakeSaba" />
     </React.Fragment>
   )
 }
