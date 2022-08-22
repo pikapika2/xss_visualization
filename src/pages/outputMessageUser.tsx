@@ -1,25 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import AHref from './aHref'
 import codeCheck from './codeCheck'
+import { ChatMessage } from './index.tsx'
 
-const OutputMessageUser: React.FC<Props> = ({ addText, onChange }) => {
-  if (addText === undefined || addText.length === 0) {
-    return (
-      <p className="default_text" id="dangerousHTML">
-        (ここに入力結果が表示されます)
-      </p>
-    )
-  }
-  const resultATag = codeCheck(addText)
-  //console.log(resultATag)
-  if (resultATag === true) {
-    return AHref(addText)
-  }
-
+const OutputMessageUser: React.FC<Props> = ({ chatText, onChange }) => {
   return (
     <React.Fragment>
-      <p>特に何も起こらない…</p>
-      <p id="dangerousHTML"> {addText} </p>
+      {chatText.map((wordArray) => {
+        if (wordArray.type === 'normal') {
+          return <p> {wordArray.word} </p>
+        } else if (wordArray.type === 'aHref') {
+          return AHref(wordArray.word)
+        } else {
+          return <p> 危険なやつ </p>
+        }
+      })}
     </React.Fragment>
   )
 }

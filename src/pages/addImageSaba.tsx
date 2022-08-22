@@ -14,8 +14,6 @@ const AddImageSaba: React.FC<Props> = ({ imageText, onChange }) => {
         <Image id="fakeSaba" src={fakeSabaImage} />
         <p> {imageText} </p>
       </div>
-      <Xarrow start="dangerousHTML" end="normal_human" />
-      <Xarrow start="dangerousHTML" end="fakeSaba" />
     </React.Fragment>
   )
 }

@@ -2,24 +2,37 @@ import React, { useContext, useState } from 'react'
 import Xarrow from 'react-xarrows'
 import Image from 'next/image'
 import fakeSabaImage from '../image/mainsaba.png'
-import { CorrectSaba } from './index.tsx'
+import { WebsiteShow } from './index.tsx'
 
 let count = 0
 
 const AHref: React.FC<Props> = (code) => {
   console.log(code)
-  const { correctName, setCorrectName } = useContext(CorrectSaba)
-  const siteUrl = code.split('"')
-  setCorrectName(siteUrl[1] + 'サーバ')
-  /*if (code === undefined) {
-    return console.log('何も表示しない(後で考慮)')
-  }*/
+  const [show1, setShow1] = useState<boolean>(false)
+  const [show2, setShow2] = useState<boolean>(false)
+  const [show3, setShow3] = useState<boolean>(false)
+  const { imagineWebsiteShow, setImagineWebsiteShow } = useContext(WebsiteShow)
 
-  const aTagStep: React.FC<Props> = () => {}
+  function atagShow() {
+    if (count === 0) {
+      setShow1(!show1)
+      setImagineWebsiteShow(!imagineWebsiteShow)
+      setShow2(!show2)
+      count++
+    } else if (count === 1) {
+      setShow1(!show1)
+      setImagineWebsiteShow(!imagineWebsiteShow)
+      setShow2(!show2)
+      setShow3(!show3)
+      count++
+    } else if (count === 2) {
+      setShow3(!show3)
+      count = 0
+    }
+  }
 
   return (
     <React.Fragment>
-      <br />
       <span
         id="dangerousHTML"
         dangerouslySetInnerHTML={{
@@ -27,7 +40,15 @@ const AHref: React.FC<Props> = (code) => {
         }}
       ></span>
       <br />
-      <button>aタグによる攻撃</button>
+      <button onClick={() => atagShow()}>aタグによる攻撃</button>
+      <Xarrow start="dangerousHTML" end="fakeSaba" showXarrow={show1} />
+      <Xarrow
+        start="dangerousHTML"
+        end="imagine_website"
+        dashness={true}
+        showXarrow={show2}
+      />
+      <Xarrow start="dangerousHTML" end="fakeSaba" showXarrow={show3} />
     </React.Fragment>
   )
 }
