@@ -8,6 +8,7 @@ let count = 0
 
 const AHref: React.FC<Props> = (code) => {
   console.log(code)
+  //-- 独自フックを使うことで，複数回呼び出せるようにしたい
   const [show1, setShow1] = useState<boolean>(false)
   const [show2, setShow2] = useState<boolean>(false)
   const [show3, setShow3] = useState<boolean>(false)

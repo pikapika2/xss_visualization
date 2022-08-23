@@ -6,6 +6,7 @@ import AHref from './aHref'
 import codeCheck from './codeCheck'
 import OneStep from './oneStep'
 import AddImageSaba from './addImageSaba'
+import DatabaseTable from './databaseTable'
 import Image from 'next/image'
 import phishingImage from '../image/phishing.png'
 import crackerImage from '../image/warumono.png'
@@ -15,12 +16,15 @@ import imagineWebsiteImage from '../image/imagine_website.png'
 
 export const WebsiteShow = createContext()
 let aTagFlag = Boolean(false)
+let id = 2
 
 export default function Home(): Promise<void> {
   //const [links, setLinks] = useState(initialLinks)
   const [text, setText] = useState<string>('')
   const [addText, setAddText] = useState<string>('')
-  const [chatText, setChatText] = useState<string>([])
+  const [chatText, setChatText] = useState([
+    { id: 1, type: 'normal', word: 'おはよう' },
+  ])
   const [correctName, setCorrectName] = useState<string>('')
   const [imagineWebsiteShow, setImagineWebsiteShow] = useState<boolean>(false)
   const websiteShow = {
@@ -42,6 +46,7 @@ export default function Home(): Promise<void> {
       setChatText([
         ...chatText,
         {
+          id: id,
           type: `aHref`,
           word: addText,
         },
@@ -50,12 +55,14 @@ export default function Home(): Promise<void> {
       setChatText([
         ...chatText,
         {
+          id: id,
           type: `normal`,
           word: addText,
         },
       ])
     }
     console.log(chatText)
+    id++
   }, [addText])
 
   const addOneLine = () => {
@@ -103,6 +110,7 @@ export default function Home(): Promise<void> {
         <span id="imagine_website">
           {imagineWebsiteShow ? <Image src={imagineWebsiteImage} /> : null}
         </span>
+        <DatabaseTable chatText={chatText} />
         <AddImageSaba imageText={correctName} />
       </div>
       <Xarrow
