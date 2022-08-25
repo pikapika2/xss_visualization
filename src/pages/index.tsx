@@ -5,6 +5,7 @@ import OutputMessageCracker from './outputMessageCracker'
 import AHref from './aHref'
 import codeCheck from './codeCheck'
 import OneStep from './oneStep'
+import ChatArrow from './chatArrow'
 import AddImageSaba from './addImageSaba'
 import DatabaseTable from './databaseTable'
 import Image from 'next/image'
@@ -15,11 +16,13 @@ import sabaImage from '../image/mainsaba.png'
 import imagineWebsiteImage from '../image/imagine_website.png'
 
 export const WebsiteShow = createContext()
+export const Show1 = createContext()
+export const Show2 = createContext()
+export const Show3 = createContext()
 let aTagFlag = Boolean(false)
 let id = 2
 
 export default function Home(): Promise<void> {
-  //const [links, setLinks] = useState(initialLinks)
   const [text, setText] = useState<string>('')
   const [addText, setAddText] = useState<string>('')
   const [chatText, setChatText] = useState([
@@ -27,12 +30,30 @@ export default function Home(): Promise<void> {
   ])
   const [correctName, setCorrectName] = useState<string>('')
   const [imagineWebsiteShow, setImagineWebsiteShow] = useState<boolean>(false)
+  const [show1, setShow1] = useState(false)
+  const [show2, setShow2] = useState(false)
+  const [show3, setShow3] = useState(false)
   const websiteShow = {
     imagineWebsiteShow,
     setImagineWebsiteShow,
   }
+  const arrowShow1 = {
+    show1,
+    setShow1,
+  }
+  const arrowShow2 = {
+    show2,
+    setShow2,
+  }
+  const arrowShow3 = {
+    show3,
+    setShow3,
+  }
 
   useEffect(() => {
+    if (addText === '') {
+      return
+    }
     const resultATag = codeCheck(addText)
     if (resultATag === true) {
       if (aTagFlag === false) {
@@ -98,10 +119,16 @@ export default function Home(): Promise<void> {
           >
             これを仕掛ける
           </button>
+          <Show1.Provider value={arrowShow1}>
+            <Show2.Provider value={arrowShow2}>
+              <Show3.Provider value={arrowShow3}>
+                <ChatArrow />
+              </Show3.Provider>
+            </Show2.Provider>
+          </Show1.Provider>
           <OneStep />
           <br />
         </div>
-        <Image className="site_img" id="dangerousWebsite" src={phishingImage} />
       </div>
       <div className="right_side">
         <p className="code_plaintext">入力された文字列：{addText}</p>
@@ -113,18 +140,11 @@ export default function Home(): Promise<void> {
         <DatabaseTable chatText={chatText} />
         <AddImageSaba imageText={correctName} />
       </div>
-      <Xarrow
-        start="userSide"
-        end="mainSaba"
-        headSize={0.1}
-        headShape="circle"
-      />
-      <Xarrow
-        start="crackerSide"
-        end="mainSaba"
-        headSize={0.1}
-        headShape="circle"
-      />
+      <Xarrow start="crackerSide" end="chatTable" />
+      <Xarrow start="crackerSide" end="mainSaba" showXarrow={show1} />
+      <Xarrow start="mainSaba" end="chatTable" showXarrow={show2} />
+      <Xarrow start="mainSaba" end="userSide" showXarrow={show3} />
+      <Xarrow start="mainSaba" end="crackerSide" showXarrow={show3} />
     </React.Fragment>
   )
 }

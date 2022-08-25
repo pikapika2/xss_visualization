@@ -4,11 +4,11 @@ const DatabaseTable: React.FC<Props> = ({ chatText, onChange }) => {
   console.log(chatText)
   return (
     <React.Fragment>
-      <table border="1">
+      <table id="chatTable" border="1">
         <thead>
           <tr>
-            <th>aaaa</th>
-            <th>bbbn</th>
+            <th>後で消すやつ(ユーザなど)</th>
+            <th>メッセージ</th>
           </tr>
         </thead>
         <tbody>
