@@ -13,7 +13,7 @@ const CrackerSide: React.FC<Props> = () => {
   return (
     <React.Fragment>
       <div>
-        <DisplayUrl username={loginCracker} />
+        <DisplayUrl username="taro" />
         <p className="site_name">サイト(クラッカー側)</p>
         <OutputMessageCracker chatText={chatText} />
         <input

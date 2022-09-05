@@ -18,7 +18,7 @@ const LoginPage: React.FC<Props> = ({ userData }) => {
   return (
     <React.Fragment>
       <div id="login_page">
-        <DisplayUrl username={loginCracker} />
+        <DisplayUrl username="" />
         <p className="site_name">ログインページ</p>
         <p>ユーザ</p>
         <input
