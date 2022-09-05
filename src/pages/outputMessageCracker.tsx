@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import AHref from './aHref'
-import codeCheck from './codeCheck'
 
 const OutputMessageCracker: React.FC<Props> = ({ chatText, onChange }) => {
   return (

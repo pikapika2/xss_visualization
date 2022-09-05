@@ -10,10 +10,8 @@ const AddImageSaba: React.FC<Props> = ({ imageText, onChange }) => {
 
   return (
     <React.Fragment>
-      <div>
-        <Image id="fakeSaba" src={fakeSabaImage} />
-        <p> {imageText} </p>
-      </div>
+      <Image src={fakeSabaImage} />
+      <p> {imageText} </p>
     </React.Fragment>
   )
 }

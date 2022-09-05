@@ -1,22 +1,22 @@
 import React, { useState, useContext } from 'react'
 
-const DatabaseTable: React.FC<Props> = ({ chatText, onChange }) => {
+const DatabaseTable: React.FC<Props> = ({ chatText }) => {
   console.log(chatText)
   return (
     <React.Fragment>
-      <table id="chatTable" border="1">
+      <table id="chat_table" border="1">
         <thead>
           <tr>
-            <th>後で消すやつ(ユーザなど)</th>
             <th>メッセージ</th>
+            <th>ユーザ</th>
           </tr>
         </thead>
         <tbody>
           {chatText.map((item) => {
             return (
               <tr key={item.id}>
-                <td>{item.type}</td>
                 <td>{item.word}</td>
+                <td>{item.user}</td>
               </tr>
             )
           })}

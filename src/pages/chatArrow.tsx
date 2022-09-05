@@ -1,10 +1,11 @@
 import React, { useState, useContext } from 'react'
 import Xarrow from 'react-xarrows'
-import { Show1, Show2, Show3 } from './index.tsx'
+import { ChatAddText, Show1, Show2, Show3 } from './index.tsx'
 
 let count = 0
 
-const ChatArrow: React.FC<Props> = () => {
+const ChatArrow: React.FC<Props> = ({ text }) => {
+  const { addText, setAddText } = useContext(ChatAddText)
   const { show1, setShow1 } = useContext(Show1)
   const { show2, setShow2 } = useContext(Show2)
   const { show3, setShow3 } = useContext(Show3)
@@ -13,6 +14,7 @@ const ChatArrow: React.FC<Props> = () => {
       setShow1(!show1)
       count++
     } else if (count === 1) {
+      setAddText(text)
       setShow1(!show1)
       setShow2(!show2)
       count++
