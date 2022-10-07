@@ -20,6 +20,7 @@ const CrackerSide: React.FC<Props> = () => {
           value={text}
           onChange={() => setText(event.target.value)}
           className="textbox"
+          defaultValue="initial value"
           maxLength="100"
         />
         <ChatArrow text={text} />

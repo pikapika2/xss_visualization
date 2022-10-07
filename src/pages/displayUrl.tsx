@@ -7,13 +7,21 @@ const DisplayUrl: React.FC<Props> = (username) => {
   if (username.username === '') {
     return (
       <React.Fragment>
-        <input className="textbox" value="http://chat.example.com/login.php" />
+        <input
+          className="textbox"
+          value="http://chat.example.com/login.php"
+          defaultValue="http://chat.example.com/login.php"
+        />
       </React.Fragment>
     )
   } else {
     return (
       <React.Fragment>
-        <input className="textbox" value="http://chat.example.com/chat.php" />
+        <input
+          className="textbox"
+          value="http://chat.example.com/chat.php"
+          defaultValue="http://chat.example.com/chat.php"
+        />
       </React.Fragment>
     )
   }

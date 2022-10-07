@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import Xarrow from 'react-xarrows'
 import Image from 'next/image'
 import fakeSabaImage from '../image/mainsaba.png'
@@ -32,6 +32,12 @@ const AHref: React.FC<Props> = (code) => {
     }
   }
 
+  useEffect(() => {
+    const event = new CustomEvent('resize')
+    console.log('www' + count)
+    window.dispatchEvent(event)
+  }, [show4, show5, show6])
+
   return (
     <React.Fragment>
       <span
@@ -49,7 +55,12 @@ const AHref: React.FC<Props> = (code) => {
         showXarrow={show5}
       />
       <Xarrow start="dangerousHTML" end="fake_saba" showXarrow={show6} />
-      <Xarrow start="dangerousHTML" end="fake_saba" showXarrow={show4} />
+      <Xarrow
+        start="dangerousHTML"
+        end="black_human"
+        endAnchor="left"
+        showXarrow={show4}
+      />
     </React.Fragment>
   )
 }
