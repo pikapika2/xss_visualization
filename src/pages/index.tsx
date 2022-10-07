@@ -189,16 +189,38 @@ export default function Home(): Promise<void> {
           <span id="imagine_website">
             {imagineWebsiteShow ? <Image src={imagineWebsiteImage} /> : null}
           </span>
-          <DatabaseTable chatText={chatText} />
-          <DatabaseTableUser userData={userData} />
-          <div id="fake_saba">
-            <AddImageSaba imageText={correctName} />
+          <div className="left_side">
+            <DatabaseTable chatText={chatText} />
           </div>
+          <DatabaseTableUser userData={userData} />
+          <span id="fake_saba">
+            <AddImageSaba imageText={correctName} />
+          </span>
         </div>
-        <Xarrow start="cracker_side" end="main_saba" showXarrow={show1} />
-        <Xarrow start="main_saba" end="chat_table" showXarrow={show2} />
-        <Xarrow start="main_saba" end="user_side" showXarrow={show3} />
-        <Xarrow start="main_saba" end="cracker_side" showXarrow={show3} />
+        <Xarrow
+          start="cracker_side"
+          end="main_saba"
+          labels="入力した文字を送信"
+          showXarrow={show1}
+        />
+        <Xarrow
+          start="main_saba"
+          end="chat_table"
+          labels={addText + 'をDBに反映'}
+          showXarrow={show2}
+        />
+        <Xarrow
+          start="main_saba"
+          end="user_side"
+          labals="両者に反映"
+          showXarrow={show3}
+        />
+        <Xarrow
+          start="main_saba"
+          end="cracker_side"
+          labals="両者に反映"
+          showXarrow={show3}
+        />
       </Xwrapper>
     </React.Fragment>
   )

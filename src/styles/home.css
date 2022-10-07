@@ -1,5 +1,5 @@
-html, body{
-  height: 100%
+html{
+	overflow-y: scroll;
 }
 
 .left_side{
@@ -50,6 +50,10 @@ html, body{
 .code_plaintext{
 	border: 1px solid;
 	border-color: blue;
+}
+
+.flex{
+	display: flex;
 }
 
 #black_human{
