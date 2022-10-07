@@ -1,27 +1,14 @@
 import React, { useState } from 'react'
-import AHref from './Ahref'
+import Xarrow from 'react-xarrows'
 
-const CodeCheck: React.FC<Props> = ({ addText, onChange }) => {
-  if (addText === 'undefined' || addText.length === 0) {
-    return (
-      <p className="default_text" id="dangerousHTML">
-        (ここに入力結果が表示されます)
-      </p>
-    )
+const codeCheck: React.FC<Props> = (code) => {
+  console.log(code)
+  if (code.length >= 60) {
+    return false
   }
   const aTag = /<a href="https?:\/\/([\w-]+\.)+[\w-]+(\/[\w-./?%&=]*)?">/
-  const resultATag = aTag.test(addText)
-  //console.log(resultATag)
-  if (resultATag === true) {
-    return AHref(addText)
-  }
-
-  return (
-    <React.Fragment>
-      <p>特に何も起こらない…</p>
-      <p id="dangerousHTML"> {addText} </p>
-    </React.Fragment>
-  )
+  const resultATag = aTag.test(code)
+  return resultATag
 }
 
-export default CodeCheck
+export default codeCheck

@@ -1,5 +1,10 @@
+html, body{
+  height: 100%
+}
+
 .left_side{
 	width: 49%;
+	height: 100%;
 	float: left;
 }
 
@@ -10,6 +15,7 @@
 
 .bulletin_board{
 	border: 2px solid;
+	height: 35%;
 	width: 80%;
 }
 
@@ -30,6 +36,20 @@
 
 .site_img{
 	width: 60%;
+}
+
+.saba{
+	text-align: right;
+	height: 15%;
+}
+
+.textbox{
+	width: 70%;
+}
+
+.code_plaintext{
+	border: 1px solid;
+	border-color: blue;
 }
 
 #black_human{

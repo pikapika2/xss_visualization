@@ -32,7 +32,7 @@ const OneStep: React.FC<Props> = () => {
       <button onClick={() => testShow()}>テスト</button>
       <Xarrow
         start="normal_human"
-        end="dangerousHTML"
+        end="userSide"
         labels="アクセスしてクリックする"
         showXarrow={show1}
       />
