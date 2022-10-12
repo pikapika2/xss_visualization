@@ -1,6 +1,7 @@
-import React, { createContext, useState, useEffect } from 'react'
+import React, { createContext, useState, useEffect, useRef } from 'react'
 import Xarrow, { useXarrow, Xwrapper } from 'react-xarrows'
 import Draggable from 'react-draggable'
+import LeaderLine from 'leader-line-new'
 import OutputMessageUser from './outputMessageUser'
 import OutputMessageCracker from './outputMessageCracker'
 import AHref from './aHref'
@@ -54,6 +55,27 @@ export default function Home(): Promise<void> {
   const [show4, setShow4] = useState(false)
   const [show5, setShow5] = useState(false)
   const [show6, setShow6] = useState(false)
+  //後で配列化
+  const line1 = {
+    start: 'silent',
+    end: 'black_human',
+    startAnchor: { position: 'bottom', offset: { x: 10 } },
+    showXarrow: show4,
+  }
+  const line2 = {
+    start: 'silent',
+    end: 'imagine_website',
+    dashness: true,
+    startAnchor: { position: 'bottom', offset: { x: 10 } },
+    showXarrow: show5,
+  }
+  const line3 = {
+    start: 'silent',
+    end: 'fake_saba',
+    startAnchor: { position: 'bottom', offset: { x: 10 } },
+    showXarrow: show6,
+  }
+
   const websiteShow = {
     imagineWebsiteShow,
     setImagineWebsiteShow,
@@ -102,6 +124,13 @@ export default function Home(): Promise<void> {
     userData,
     setUserData,
   }
+
+  /*if(process.browser){
+    let start = document.getElementById("cracker_side")
+    let end = document.getElementById("black_human")
+    let link = []
+    link.push(new LeaderLine(start, end))
+  }*/
 
   useEffect(() => {
     if (addText === '') {
@@ -158,6 +187,7 @@ export default function Home(): Promise<void> {
               </Show4.Provider>
             </WebsiteShow.Provider>
           </div>
+          <span id="silent"></span>
           <div className="saba">
             <Image className="site_img" id="main_saba" src={sabaImage} />
             <p>提供サーバ</p>
@@ -221,6 +251,9 @@ export default function Home(): Promise<void> {
           labals="両者に反映"
           showXarrow={show3}
         />
+        <Xarrow {...line1} />
+        <Xarrow {...line2} />
+        <Xarrow {...line3} />
       </Xwrapper>
     </React.Fragment>
   )

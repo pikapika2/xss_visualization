@@ -1,10 +1,5 @@
-html{
-	overflow-y: scroll;
-}
-
 .left_side{
 	width: 49%;
-	height: 100%;
 	float: left;
 }
 
@@ -15,8 +10,9 @@ html{
 
 .bulletin_board{
 	border: 2px solid;
-	height: 35%;
+	height: 200px;
 	width: 80%;
+	overflow-y: scroll;
 }
 
 .default_text{

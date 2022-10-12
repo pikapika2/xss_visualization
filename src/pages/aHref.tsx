@@ -16,15 +16,15 @@ const AHref: React.FC<Props> = (code) => {
 
   function atagShow() {
     if (count === 0) {
-      setShow4(!show4)
       setImagineWebsiteShow(!imagineWebsiteShow)
       setShow5(!show5)
+      setShow4(!show4)
       count++
     } else if (count === 1) {
       setShow4(!show4)
-      setImagineWebsiteShow(!imagineWebsiteShow)
       setShow5(!show5)
       setShow6(!show6)
+      setImagineWebsiteShow(!imagineWebsiteShow)
       count++
     } else if (count === 2) {
       setShow6(!show6)
@@ -33,10 +33,8 @@ const AHref: React.FC<Props> = (code) => {
   }
 
   useEffect(() => {
-    const event = new CustomEvent('resize')
-    console.log('www' + count)
-    window.dispatchEvent(event)
-  }, [show4, show5, show6])
+    window.dispatchEvent(new Event('resize'))
+  }, [show4])
 
   return (
     <React.Fragment>
@@ -48,19 +46,6 @@ const AHref: React.FC<Props> = (code) => {
       ></span>
       <br />
       <button onClick={() => atagShow()}>aタグによる攻撃</button>
-      <Xarrow
-        start="dangerousHTML"
-        end="imagine_website"
-        dashness={true}
-        showXarrow={show5}
-      />
-      <Xarrow start="dangerousHTML" end="fake_saba" showXarrow={show6} />
-      <Xarrow
-        start="dangerousHTML"
-        end="black_human"
-        endAnchor="left"
-        showXarrow={show4}
-      />
     </React.Fragment>
   )
 }
