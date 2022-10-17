@@ -26,6 +26,9 @@ export const Show3 = createContext()
 export const Show4 = createContext()
 export const Show5 = createContext()
 export const Show6 = createContext()
+export const Show7 = createContext()
+export const Show8 = createContext()
+export const Show9 = createContext()
 export const ChatAddText = createContext()
 export const ContextChatText = createContext()
 export const ContextLoginCracker = createContext()
@@ -55,6 +58,9 @@ export default function Home(): Promise<void> {
   const [show4, setShow4] = useState(false)
   const [show5, setShow5] = useState(false)
   const [show6, setShow6] = useState(false)
+  const [show7, setShow7] = useState(false)
+  const [show8, setShow8] = useState(false)
+  const [show9, setShow9] = useState(false)
   //後で配列化
   const line1 = {
     start: 'silent',
@@ -74,6 +80,23 @@ export default function Home(): Promise<void> {
     end: 'fake_saba',
     startAnchor: { position: 'bottom', offset: { x: 10 } },
     showXarrow: show6,
+  }
+  const lineUserCheck = {
+    start: 'cracker_side',
+    end: 'userdata_table',
+    showXarrow: show7,
+  }
+  const loginCorrect = {
+    start: 'main_saba',
+    end: 'cracker_side',
+    labels: 'ログイン成功',
+    showXarrow: show8,
+  }
+  const loginDummyCorrect = {
+    start: 'main_saba',
+    end: 'cracker_side',
+    labels: '不正ログイン成功',
+    showXarrow: show9,
   }
 
   const websiteShow = {
@@ -120,17 +143,22 @@ export default function Home(): Promise<void> {
     show6,
     setShow6,
   }
+  const arrowShow7 = {
+    show7,
+    setShow7,
+  }
+  const arrowShow8 = {
+    show8,
+    setShow8,
+  }
+  const arrowShow9 = {
+    show9,
+    setShow9,
+  }
   const contextUserData = {
     userData,
     setUserData,
   }
-
-  /*if(process.browser){
-    let start = document.getElementById("cracker_side")
-    let end = document.getElementById("black_human")
-    let link = []
-    link.push(new LeaderLine(start, end))
-  }*/
 
   useEffect(() => {
     if (addText === '') {
@@ -207,7 +235,15 @@ export default function Home(): Promise<void> {
                   </ContextChatText.Provider>
                 </ChatAddText.Provider>
               ) : (
-                <LoginPage userData={userData} />
+                <Show1.Provider value={arrowShow1}>
+                  <Show7.Provider value={arrowShow7}>
+                    <Show8.Provider value={arrowShow8}>
+                      <Show9.Provider value={arrowShow9}>
+                        <LoginPage userData={userData} />
+                      </Show9.Provider>
+                    </Show8.Provider>
+                  </Show7.Provider>
+                </Show1.Provider>
               )}
             </ContextLoginCracker.Provider>
           </div>
@@ -242,18 +278,21 @@ export default function Home(): Promise<void> {
         <Xarrow
           start="main_saba"
           end="user_side"
-          labals="両者に反映"
+          labels="両者に反映"
           showXarrow={show3}
         />
         <Xarrow
           start="main_saba"
           end="cracker_side"
-          labals="両者に反映"
+          labels="両者に反映"
           showXarrow={show3}
         />
         <Xarrow {...line1} />
         <Xarrow {...line2} />
         <Xarrow {...line3} />
+        <Xarrow {...lineUserCheck} />
+        <Xarrow {...loginCorrect} />
+        <Xarrow {...loginDummyCorrect} />
       </Xwrapper>
     </React.Fragment>
   )

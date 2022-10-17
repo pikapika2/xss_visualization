@@ -3,9 +3,14 @@ import Image from 'next/image'
 import Xarrow from 'react-xarrows'
 import fakeSabaImage from '../image/mainsaba.png'
 
-const AddImageSaba: React.FC<Props> = ({ imageText, onChange }) => {
+type Props = {
+  imageText: string
+  onChange: (event: any) => void
+}
+
+const AddImageSaba: React.FC<Props> = ({ imageText }) => {
   if (imageText === undefined || imageText.length === 0) {
-    return
+    return null
   }
 
   return (

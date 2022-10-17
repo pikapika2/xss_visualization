@@ -2,9 +2,13 @@ import React, { useContext, useState, useEffect } from 'react'
 import Xarrow from 'react-xarrows'
 import Image from 'next/image'
 import fakeSabaImage from '../image/mainsaba.png'
-import { WebsiteShow, Show4, Show5, Show6 } from './index.tsx'
+import { WebsiteShow, Show4, Show5, Show6 } from './index'
 
 let count = 0
+
+type Props = {
+  code: string
+}
 
 const AHref: React.FC<Props> = (code) => {
   console.log(code)
