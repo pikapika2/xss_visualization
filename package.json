@@ -27,12 +27,12 @@
   },
   "dependencies": {
     "eslint-config-prettier": "8.5.0",
-    "leader-line-new": "^1.1.9",
+    "leader-line-new": "1.1.9",
     "next": "12.1.6",
     "react": "18.1.0",
     "react-dom": "18.1.0",
-    "react-draggable": "^4.4.5",
-    "react-xarrows": "^2.0.2"
+    "react-draggable": "4.4.5",
+    "react-xarrows": "2.0.2"
   },
   "devDependencies": {
     "@testing-library/react": "13.4.0",
