@@ -1,7 +1,16 @@
 import React, { useState, useContext } from 'react'
 import Xarrow, { useXarrow, Xwrapper } from 'react-xarrows'
-import { ContextLoginCracker, Show1, Show7, Show8, Show9 } from './index.tsx'
+import {
+  ContextLoginCracker,
+  Show1,
+  Show7,
+  Show8,
+  Show9,
+  Show10,
+} from './index.tsx'
 import DisplayUrl from './displayUrl.tsx'
+import injectionCheck from './injectionCheck.tsx'
+import userInjectionCheck from './userInjectionCheck.tsx'
 
 let count = 0
 let loginUser = ''
@@ -12,6 +21,7 @@ const LoginPage: React.FC<Props> = ({ userData }) => {
   const { show7, setShow7 } = useContext(Show7)
   const { show8, setShow8 } = useContext(Show8)
   const { show9, setShow9 } = useContext(Show9)
+  const { show10, setShow10 } = useContext(Show10)
   const [user, setUser] = useState<string>('')
   const [password, setPassword] = useState<string>('')
 
@@ -26,12 +36,21 @@ const LoginPage: React.FC<Props> = ({ userData }) => {
     } else if (count === 2) {
       setShow7(!show7)
       count++
+      if (user.match("'")) {
+        if (userInjectionCheck(user)) {
+          loginUser = user.split(' ').join('').split("'").shift()
+          setShow9(!show9)
+          return
+        }
+      }
       for (let i in userData) {
         if (userData[i].username === user) {
           if (password.match("'")) {
-            loginUser = user
-            setShow9(!show9)
-            return
+            if (injectionCheck(password)) {
+              loginUser = user
+              setShow9(!show9)
+              return
+            }
           }
           if (userData[i].password === password) {
             loginUser = user
@@ -40,12 +59,16 @@ const LoginPage: React.FC<Props> = ({ userData }) => {
           }
         }
       }
-      count = 0
+      count = 100
+      setShow10(!show10)
     } else if (count === 3) {
       count = 0
       setLoginCracker(loginUser)
       setShow8(false)
       setShow9(false)
+    } else if (count === 100) {
+      count = 0
+      setShow10(!show10)
     }
   }
 

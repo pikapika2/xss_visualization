@@ -29,6 +29,7 @@ export const Show6 = createContext()
 export const Show7 = createContext()
 export const Show8 = createContext()
 export const Show9 = createContext()
+export const Show10 = createContext()
 export const ChatAddText = createContext()
 export const ContextChatText = createContext()
 export const ContextLoginCracker = createContext()
@@ -61,6 +62,7 @@ export default function Home(): Promise<void> {
   const [show7, setShow7] = useState(false)
   const [show8, setShow8] = useState(false)
   const [show9, setShow9] = useState(false)
+  const [show10, setShow10] = useState(false)
   //後で配列化
   const line1 = {
     start: 'silent',
@@ -97,6 +99,12 @@ export default function Home(): Promise<void> {
     end: 'cracker_side',
     labels: '不正ログイン成功',
     showXarrow: show9,
+  }
+  const loginMiss = {
+    start: 'main_saba',
+    end: 'cracker_side',
+    labels: 'ログイン失敗',
+    showXarrow: show10,
   }
 
   const websiteShow = {
@@ -154,6 +162,10 @@ export default function Home(): Promise<void> {
   const arrowShow9 = {
     show9,
     setShow9,
+  }
+  const arrowShow10 = {
+    show10,
+    setShow10,
   }
   const contextUserData = {
     userData,
@@ -239,7 +251,9 @@ export default function Home(): Promise<void> {
                   <Show7.Provider value={arrowShow7}>
                     <Show8.Provider value={arrowShow8}>
                       <Show9.Provider value={arrowShow9}>
-                        <LoginPage userData={userData} />
+                        <Show10.Provider value={arrowShow10}>
+                          <LoginPage userData={userData} />
+                        </Show10.Provider>
                       </Show9.Provider>
                     </Show8.Provider>
                   </Show7.Provider>
@@ -293,6 +307,7 @@ export default function Home(): Promise<void> {
         <Xarrow {...lineUserCheck} />
         <Xarrow {...loginCorrect} />
         <Xarrow {...loginDummyCorrect} />
+        <Xarrow {...loginMiss} />
       </Xwrapper>
     </React.Fragment>
   )
