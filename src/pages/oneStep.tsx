@@ -3,7 +3,7 @@ import Xarrow from 'react-xarrows'
 
 let count = 0
 
-const OneStep: React.FC<Props> = () => {
+const OneStep: React.FC = () => {
   const [show1, setShow1] = useState(false)
   const [show2, setShow2] = useState(false)
   const [show3, setShow3] = useState(false)

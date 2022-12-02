@@ -1,9 +1,17 @@
 import React, { useState, useContext } from 'react'
 import Xarrow, { useXarrow, Xwrapper } from 'react-xarrows'
-import { ContextLoginCracker } from './index.tsx'
-import DisplayUrl from './displayUrl.tsx'
+import { ContextLoginCracker } from './index'
+import DisplayUrl from './displayUrl'
 
 let count = 0
+
+type Props = {
+  userData: {
+    id: number
+    username: string
+    password: string
+  }[]
+}
 
 const LoginPage: React.FC<Props> = ({ userData }) => {
   const { loginCracker, setLoginCracker } = useContext(ContextLoginCracker)
@@ -13,6 +21,7 @@ const LoginPage: React.FC<Props> = ({ userData }) => {
   const [show1, setShow1] = useState(false)
   const [show2, setShow2] = useState(false)
   const [show3, setShow3] = useState(false)
+  const max: number = 20
   function checkData() {
     for (let i in userData) {
       if (userData[i].username === user && userData[i].password === password) {
@@ -29,17 +38,21 @@ const LoginPage: React.FC<Props> = ({ userData }) => {
         <p>ユーザ</p>
         <input
           className="textbox"
-          onChange={() => setUser(event.target.value)}
-          maxLength="20"
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            setUser(event.target.value)
+          }
+          maxLength={max}
         />
         <p>パスワード</p>
         <input
           className="textbox"
-          onChange={() => setPassword(event.target.value)}
-          maxLength="20"
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            setPassword(event.target.value)
+          }
+          maxLength={max}
         />
         <button
-          onClick={(event) => {
+          onClick={() => {
             checkData()
           }}
         >

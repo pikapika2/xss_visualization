@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Xarrow from 'react-xarrows'
 
-const codeCheck: React.FC<Props> = (code) => {
+function codeCheck(code: string) {
   console.log(code)
   if (code.length >= 60) {
     return false

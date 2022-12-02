@@ -2,14 +2,15 @@ import React, { useState, useContext } from 'react'
 import codeCheck from './codeCheck'
 import ChatArrow from './chatArrow'
 import OneStep from './oneStep'
-import DisplayUrl from './displayUrl.tsx'
+import DisplayUrl from './displayUrl'
 import OutputMessageCracker from './outputMessageCracker'
-import { ContextChatText, ContextLoginCracker } from './index.tsx'
+import { ContextChatText, ContextLoginCracker } from './index'
 
-const CrackerSide: React.FC<Props> = () => {
+const CrackerSide: React.FC = () => {
   const { chatText, setChatText } = useContext(ContextChatText)
   const { loginCracker, setLoginCracker } = useContext(ContextLoginCracker)
   const [text, setText] = useState<string>('')
+  const max: number = 100
   return (
     <React.Fragment>
       <div>
@@ -18,16 +19,18 @@ const CrackerSide: React.FC<Props> = () => {
         <OutputMessageCracker chatText={chatText} />
         <input
           value={text}
-          onChange={() => setText(event.target.value)}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            setText(event.target.value)
+          }
           className="textbox"
           defaultValue="initial value"
-          maxLength="100"
+          maxLength={max}
         />
         <ChatArrow text={text} />
         <OneStep />
         <button
           onClick={(event) => {
-            setLoginCracker(null)
+            setLoginCracker(undefined)
           }}
         >
           ログアウト

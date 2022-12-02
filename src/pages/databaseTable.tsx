@@ -1,10 +1,20 @@
 import React, { useState, useContext } from 'react'
 
+type Props = {
+  chatText: {
+    id: number
+    type: string
+    word: string
+    user: string
+  }[]
+}
+
 const DatabaseTable: React.FC<Props> = ({ chatText }) => {
   console.log(chatText)
+  const border: number = 1
   return (
     <React.Fragment>
-      <table id="chat_table" border="1">
+      <table id="chat_table" border={border}>
         <thead>
           <tr>
             <th>メッセージ</th>
@@ -12,7 +22,7 @@ const DatabaseTable: React.FC<Props> = ({ chatText }) => {
           </tr>
         </thead>
         <tbody>
-          {chatText.map((item) => {
+          {chatText?.map((item) => {
             return (
               <tr key={item.id}>
                 <td>{item.word}</td>

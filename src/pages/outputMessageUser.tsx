@@ -1,18 +1,27 @@
 import React, { useState, useContext } from 'react'
 import AHref from './aHref'
 import codeCheck from './codeCheck'
-import { ChatMessage } from './index.tsx'
+//import { ChatMessage } from './index'
 
-const OutputMessageUser: React.FC<Props> = ({ chatText, onChange }) => {
+type Props = {
+  chatText: {
+    id: number
+    type: string
+    word: string
+    user: string
+  }[]
+}
+
+const OutputMessageUser: React.FC<Props> = ({ chatText }) => {
   return (
     <React.Fragment>
-      {chatText.map((wordArray) => {
+      {chatText?.map((wordArray) => {
         if (wordArray.type === 'normal') {
-          return <p> {wordArray.word} </p>
+          return <p key={wordArray.id}> {wordArray.word} </p>
         } else if (wordArray.type === 'aHref') {
           return AHref(wordArray.word)
         } else {
-          return <p> 危険なやつ </p>
+          return <p key={wordArray.id}> 危険なやつ </p>
         }
       })}
     </React.Fragment>
