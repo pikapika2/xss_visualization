@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react'
 import Xarrow, { useXarrow, Xwrapper } from 'react-xarrows'
 import { ContextLoginCracker } from './index'
+import { UserId } from './index'
+import { Show7, Show8, Show9 } from './index'
 import DisplayUrl from './displayUrl'
 
 let count = 0
@@ -15,19 +17,44 @@ type Props = {
 
 const LoginPage: React.FC<Props> = ({ userData }) => {
   const { loginCracker, setLoginCracker } = useContext(ContextLoginCracker)
+  const { loginUserId, setLoginUserId } = useContext(UserId)
   const [user, setUser] = useState<string>('')
   const [password, setPassword] = useState<string>('')
+  const { show7, setShow7 } = useContext(Show7)
+  const { show8, setShow8 } = useContext(Show8)
+  const { show9, setShow9 } = useContext(Show9)
 
-  const [show1, setShow1] = useState(false)
-  const [show2, setShow2] = useState(false)
-  const [show3, setShow3] = useState(false)
   const max: number = 20
   function checkData() {
-    for (let i in userData) {
-      if (userData[i].username === user && userData[i].password === password) {
-        setLoginCracker(user)
+    if (count === 0) {
+      setShow7(true)
+    } else if (count === 1) {
+      setShow7(false)
+      setShow8(true)
+      for (let i in userData) {
+        if (
+          userData[i].username === user &&
+          userData[i].password === password
+        ) {
+          setLoginUserId(userData[i].id)
+        }
       }
+    } else if (count === 2) {
+      setShow8(false)
+      setShow9(true)
+    } else if (count === 3) {
+      setShow9(false)
+      setLoginCracker(user)
+      setLoginUserId(0)
+      count = -1
+    } else {
+      setShow7(false)
+      setShow8(false)
+      setShow9(false)
+      setLoginUserId(0)
+      count = -1
     }
+    count++
   }
 
   return (

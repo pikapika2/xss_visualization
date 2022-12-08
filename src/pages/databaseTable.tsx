@@ -11,22 +11,21 @@ type Props = {
 
 const DatabaseTable: React.FC<Props> = ({ chatText }) => {
   console.log(chatText)
-  const border: number = 1
   return (
     <React.Fragment>
-      <table id="chat_table" border={border}>
+      <table id="chat_table" className="table_design">
         <thead>
           <tr>
-            <th>メッセージ</th>
-            <th>ユーザ</th>
+            <th className="table_design">メッセージ</th>
+            <th className="table_design">ユーザ</th>
           </tr>
         </thead>
         <tbody>
           {chatText?.map((item) => {
             return (
               <tr key={item.id}>
-                <td>{item.word}</td>
-                <td>{item.user}</td>
+                <td className="table_design">{item.word}</td>
+                <td className="table_design">{item.user}</td>
               </tr>
             )
           })}

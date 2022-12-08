@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react'
 import codeCheck from './codeCheck'
 import ChatArrow from './chatArrow'
-import OneStep from './oneStep'
 import DisplayUrl from './displayUrl'
 import OutputMessageCracker from './outputMessageCracker'
 import { ContextChatText, ContextLoginCracker } from './index'
@@ -27,7 +26,6 @@ const CrackerSide: React.FC = () => {
           maxLength={max}
         />
         <ChatArrow text={text} />
-        <OneStep />
         <button
           onClick={(event) => {
             setLoginCracker(undefined)

@@ -10,7 +10,14 @@
 
 .bulletin_board{
 	border: 2px solid;
-	height: 200px;
+	height: 250px;
+	width: 80%;
+
+}
+
+.chat_scroll{
+	border: 1px solid;
+	height: 150px;
 	width: 80%;
 	overflow-y: scroll;
 }
@@ -50,6 +57,15 @@
 
 .flex{
 	display: flex;
+}
+
+.table_design{
+	border: 3px solid;
+}
+
+.table_impact{
+	border: 6px solid;
+	border-color: red;
 }
 
 #black_human{

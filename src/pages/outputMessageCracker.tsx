@@ -11,7 +11,7 @@ type Props = {
 
 const OutputMessageCracker: React.FC<Props> = ({ chatText }) => {
   return (
-    <React.Fragment>
+    <div className="chat_scroll">
       {chatText?.map((wordArray) => {
         if (wordArray.type === 'normal') {
           return <p key={wordArray.id}> {wordArray.word} </p>
@@ -33,7 +33,7 @@ const OutputMessageCracker: React.FC<Props> = ({ chatText }) => {
           return <p key={wordArray.id}> 危険なやつ </p>
         }
       })}
-    </React.Fragment>
+    </div>
   )
 }
 export default OutputMessageCracker

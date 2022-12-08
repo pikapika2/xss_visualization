@@ -23,6 +23,11 @@ type WebsiteShow = {
   imagineWebsiteShow: boolean
   setImagineWebsiteShow: React.Dispatch<React.SetStateAction<boolean>>
 }
+
+type UserId = {
+  loginUserId: number
+  setLoginUserId: React.Dispatch<React.SetStateAction<number>>
+}
 type Show1 = {
   show1: boolean
   setShow1: React.Dispatch<React.SetStateAction<boolean>>
@@ -51,6 +56,21 @@ type Show5 = {
 type Show6 = {
   show6: boolean
   setShow6: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+type Show7 = {
+  show7: boolean
+  setShow7: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+type Show8 = {
+  show8: boolean
+  setShow8: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+type Show9 = {
+  show9: boolean
+  setShow9: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 type ChatAddText = {
@@ -87,12 +107,16 @@ type ContextUserData = {
 }
 
 export const WebsiteShow = createContext({} as WebsiteShow)
+export const UserId = createContext({} as UserId)
 export const Show1 = createContext({} as Show1)
 export const Show2 = createContext({} as Show2)
 export const Show3 = createContext({} as Show3)
 export const Show4 = createContext({} as Show4)
 export const Show5 = createContext({} as Show5)
 export const Show6 = createContext({} as Show6)
+export const Show7 = createContext({} as Show7)
+export const Show8 = createContext({} as Show8)
+export const Show9 = createContext({} as Show9)
 export const ChatAddText = createContext({} as ChatAddText)
 export const ContextChatText = createContext({} as ContextChatText)
 export const ContextLoginCracker = createContext({} as ContextLoginCracker)
@@ -118,12 +142,16 @@ export default function Home() {
     undefined
   )
   const [loginUser, setLoginUser] = useState('taro')
+  const [loginUserId, setLoginUserId] = useState(0)
   const [show1, setShow1] = useState(false)
   const [show2, setShow2] = useState(false)
   const [show3, setShow3] = useState(false)
   const [show4, setShow4] = useState(false)
   const [show5, setShow5] = useState(false)
   const [show6, setShow6] = useState(false)
+  const [show7, setShow7] = useState(false)
+  const [show8, setShow8] = useState(false)
+  const [show9, setShow9] = useState(false)
   //後で配列化
   const line1: any = {
     start: 'silent',
@@ -149,6 +177,12 @@ export default function Home() {
     imagineWebsiteShow,
     setImagineWebsiteShow,
   }
+
+  const contextLoginUserId = {
+    loginUserId,
+    setLoginUserId,
+  }
+
   const chatAddText = {
     addText,
     setAddText,
@@ -189,6 +223,18 @@ export default function Home() {
     show6,
     setShow6,
   }
+  const arrowShow7 = {
+    show7,
+    setShow7,
+  }
+  const arrowShow8 = {
+    show8,
+    setShow8,
+  }
+  const arrowShow9 = {
+    show9,
+    setShow9,
+  }
   const contextUserData = {
     userData,
     setUserData,
@@ -205,7 +251,7 @@ export default function Home() {
     if (addText === '') {
       return
     }
-    const resultATag: boolean = codeCheck(addText)
+    const resultATag: boolean = codeCheck(addText, 'atag')
     if (resultATag === true) {
       if (aTagFlag === false) {
         aTagFlag = true
@@ -226,7 +272,7 @@ export default function Home() {
           },
         ])
       }
-    } else {
+    } else if (codeCheck(addText, 'script') === true) {
       if (loginCracker !== undefined) {
         setChatText([
           ...chatText,
@@ -238,6 +284,16 @@ export default function Home() {
           },
         ])
       }
+    } else {
+      setChatText([
+        ...chatText,
+        {
+          id: id,
+          type: `normal`,
+          word: addText,
+          user: loginCracker,
+        },
+      ])
     }
     console.log(chatText)
     id++
@@ -280,7 +336,15 @@ export default function Home() {
                   </ContextChatText.Provider>
                 </ChatAddText.Provider>
               ) : (
-                <LoginPage userData={userData} />
+                <UserId.Provider value={contextLoginUserId}>
+                  <Show7.Provider value={arrowShow7}>
+                    <Show8.Provider value={arrowShow8}>
+                      <Show9.Provider value={arrowShow9}>
+                        <LoginPage userData={userData} />
+                      </Show9.Provider>
+                    </Show8.Provider>
+                  </Show7.Provider>
+                </UserId.Provider>
               )}
             </ContextLoginCracker.Provider>
           </div>
@@ -295,11 +359,31 @@ export default function Home() {
           <div className="left_side">
             <DatabaseTable chatText={chatText} />
           </div>
-          <DatabaseTableUser userData={userData} />
+          <UserId.Provider value={contextLoginUserId}>
+            <DatabaseTableUser userData={userData} />
+          </UserId.Provider>
           <span id="fake_saba">
             <AddImageSaba imageText={correctName} />
           </span>
         </div>
+        <Xarrow
+          start="cracker_side"
+          end="main_saba"
+          labels="入力したユーザ，パスワードを送信"
+          showXarrow={show7}
+        />
+        <Xarrow
+          start="main_saba"
+          end="userdata_table"
+          labels="データをもとにDBを確認"
+          showXarrow={show8}
+        />
+        <Xarrow
+          start="main_saba"
+          end="cracker_side"
+          labels="ログイン成功"
+          showXarrow={show9}
+        />
         <Xarrow
           start="cracker_side"
           end="main_saba"
