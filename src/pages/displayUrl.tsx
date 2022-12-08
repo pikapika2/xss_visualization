@@ -18,6 +18,10 @@ import React, { useContext } from 'react'
 
 let count = 0
 
+type Props = {
+  username: string
+}
+
 const DisplayUrl: React.FC<Props> = (username) => {
   console.log(username)
   if (username.username === '') {

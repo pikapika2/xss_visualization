@@ -16,23 +16,32 @@ limitations under the License.
 
 import React, { useState, useContext } from 'react'
 
+type Props = {
+  chatText: {
+    id: number
+    type: string
+    word: string
+    user: string
+  }[]
+}
+
 const DatabaseTable: React.FC<Props> = ({ chatText }) => {
   console.log(chatText)
   return (
     <React.Fragment>
-      <table id="chat_table" border="1">
+      <table id="chat_table" className="table_design">
         <thead>
           <tr>
-            <th>メッセージ</th>
-            <th>ユーザ</th>
+            <th className="table_design">メッセージ</th>
+            <th className="table_design">ユーザ</th>
           </tr>
         </thead>
         <tbody>
-          {chatText.map((item) => {
+          {chatText?.map((item) => {
             return (
               <tr key={item.id}>
-                <td>{item.word}</td>
-                <td>{item.user}</td>
+                <td className="table_design">{item.word}</td>
+                <td className="table_design">{item.user}</td>
               </tr>
             )
           })}

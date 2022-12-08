@@ -18,11 +18,15 @@ import React, { useContext, useState, useEffect } from 'react'
 import Xarrow from 'react-xarrows'
 import Image from 'next/image'
 import fakeSabaImage from '../image/mainsaba.png'
-import { WebsiteShow, Show4, Show5, Show6 } from './index.tsx'
+import { WebsiteShow, Show4, Show5, Show6 } from './index'
 
 let count = 0
 
-const AHref: React.FC<Props> = (code) => {
+/*type Props = {
+  code: any
+}*/
+
+const AHref: React.FC<string> = (code) => {
   console.log(code)
   //-- 独自フックを使うことで，複数回呼び出せるようにしたい
   const { show4, setShow4 } = useContext(Show4)
