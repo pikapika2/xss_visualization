@@ -1,8 +1,12 @@
 import React, { useState, useContext } from 'react'
 import Xarrow from 'react-xarrows'
-import { ChatAddText, Show1, Show2, Show3 } from './index.tsx'
+import { ChatAddText, Show1, Show2, Show3 } from './index'
 
 let count = 0
+
+type Props = {
+  text: string
+}
 
 const ChatArrow: React.FC<Props> = ({ text }) => {
   const { addText, setAddText } = useContext(ChatAddText)

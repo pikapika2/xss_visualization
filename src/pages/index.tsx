@@ -11,7 +11,7 @@ import AddImageSaba from './addImageSaba'
 import LoginPage from './loginPage'
 import DatabaseTable from './databaseTable'
 import DatabaseTableUser from './databaseTableUser'
-import DisplayUrl from './displayUrl.tsx'
+import DisplayUrl from './displayUrl'
 import Image from 'next/image'
 import phishingImage from '../image/phishing.png'
 import crackerImage from '../image/warumono.png'
@@ -19,22 +19,113 @@ import humanImage from '../image/computer_woman.png'
 import sabaImage from '../image/mainsaba.png'
 import imagineWebsiteImage from '../image/imagine_website.png'
 
-export const WebsiteShow = createContext()
-export const Show1 = createContext()
-export const Show2 = createContext()
-export const Show3 = createContext()
-export const Show4 = createContext()
-export const Show5 = createContext()
-export const Show6 = createContext()
-export const ChatAddText = createContext()
-export const ContextChatText = createContext()
-export const ContextLoginCracker = createContext()
-export const ContextUserData = createContext()
+type WebsiteShow = {
+  imagineWebsiteShow: boolean
+  setImagineWebsiteShow: React.Dispatch<React.SetStateAction<boolean>>
+}
 
-let aTagFlag = Boolean(false)
-let id = 2
+type UserId = {
+  loginUserId: number
+  setLoginUserId: React.Dispatch<React.SetStateAction<number>>
+}
+type Show1 = {
+  show1: boolean
+  setShow1: React.Dispatch<React.SetStateAction<boolean>>
+}
 
-export default function Home(): Promise<void> {
+type Show2 = {
+  show2: boolean
+  setShow2: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+type Show3 = {
+  show3: boolean
+  setShow3: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+type Show4 = {
+  show4: boolean
+  setShow4: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+type Show5 = {
+  show5: boolean
+  setShow5: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+type Show6 = {
+  show6: boolean
+  setShow6: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+type Show7 = {
+  show7: boolean
+  setShow7: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+type Show8 = {
+  show8: boolean
+  setShow8: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+type Show9 = {
+  show9: boolean
+  setShow9: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+type ChatAddText = {
+  addText: string
+  setAddText: React.Dispatch<React.SetStateAction<string>>
+}
+
+type ChatText = {
+  id: number
+  type: string
+  word: string
+  user: string
+}
+
+type ContextChatText = {
+  chatText: ChatText[]
+  setChatText: React.Dispatch<React.SetStateAction<ChatText[]>>
+}
+
+type ContextLoginCracker = {
+  loginCracker: string | undefined
+  setLoginCracker: React.Dispatch<React.SetStateAction<string | undefined>>
+}
+
+type UserData = {
+  id: number
+  username: string
+  password: string
+}
+
+type ContextUserData = {
+  userData: UserData[]
+  setUserData: React.Dispatch<React.SetStateAction<UserData>>
+}
+
+export const WebsiteShow = createContext({} as WebsiteShow)
+export const UserId = createContext({} as UserId)
+export const Show1 = createContext({} as Show1)
+export const Show2 = createContext({} as Show2)
+export const Show3 = createContext({} as Show3)
+export const Show4 = createContext({} as Show4)
+export const Show5 = createContext({} as Show5)
+export const Show6 = createContext({} as Show6)
+export const Show7 = createContext({} as Show7)
+export const Show8 = createContext({} as Show8)
+export const Show9 = createContext({} as Show9)
+export const ChatAddText = createContext({} as ChatAddText)
+export const ContextChatText = createContext({} as ContextChatText)
+export const ContextLoginCracker = createContext({} as ContextLoginCracker)
+export const ContextUserData = createContext({} as ContextUserData)
+
+let aTagFlag: boolean = false
+let id: number = 2
+
+export default function Home() {
   const updateXarrow = useXarrow()
   const [addText, setAddText] = useState<string>('')
   const [chatText, setChatText] = useState([
@@ -47,29 +138,35 @@ export default function Home(): Promise<void> {
   ])
   const [correctName, setCorrectName] = useState<string>('')
   const [imagineWebsiteShow, setImagineWebsiteShow] = useState<boolean>(false)
-  const [loginCracker, setLoginCracker] = useState(null)
+  const [loginCracker, setLoginCracker] = useState<string | undefined>(
+    undefined
+  )
   const [loginUser, setLoginUser] = useState('taro')
+  const [loginUserId, setLoginUserId] = useState(0)
   const [show1, setShow1] = useState(false)
   const [show2, setShow2] = useState(false)
   const [show3, setShow3] = useState(false)
   const [show4, setShow4] = useState(false)
   const [show5, setShow5] = useState(false)
   const [show6, setShow6] = useState(false)
+  const [show7, setShow7] = useState(false)
+  const [show8, setShow8] = useState(false)
+  const [show9, setShow9] = useState(false)
   //後で配列化
-  const line1 = {
+  const line1: any = {
     start: 'silent',
     end: 'black_human',
-    startAnchor: { position: 'bottom', offset: { x: 10 } },
+    startAnchor: { position: 'right', offset: { x: 10 } },
     showXarrow: show4,
   }
-  const line2 = {
+  const line2: any = {
     start: 'silent',
     end: 'imagine_website',
     dashness: true,
     startAnchor: { position: 'bottom', offset: { x: 10 } },
     showXarrow: show5,
   }
-  const line3 = {
+  const line3: any = {
     start: 'silent',
     end: 'fake_saba',
     startAnchor: { position: 'bottom', offset: { x: 10 } },
@@ -80,6 +177,12 @@ export default function Home(): Promise<void> {
     imagineWebsiteShow,
     setImagineWebsiteShow,
   }
+
+  const contextLoginUserId = {
+    loginUserId,
+    setLoginUserId,
+  }
+
   const chatAddText = {
     addText,
     setAddText,
@@ -120,6 +223,18 @@ export default function Home(): Promise<void> {
     show6,
     setShow6,
   }
+  const arrowShow7 = {
+    show7,
+    setShow7,
+  }
+  const arrowShow8 = {
+    show8,
+    setShow8,
+  }
+  const arrowShow9 = {
+    show9,
+    setShow9,
+  }
   const contextUserData = {
     userData,
     setUserData,
@@ -136,7 +251,7 @@ export default function Home(): Promise<void> {
     if (addText === '') {
       return
     }
-    const resultATag = codeCheck(addText)
+    const resultATag: boolean = codeCheck(addText, 'atag')
     if (resultATag === true) {
       if (aTagFlag === false) {
         aTagFlag = true
@@ -144,17 +259,31 @@ export default function Home(): Promise<void> {
         alert('同じ攻撃方法は使えない仕様です')
         return
       }
-      const siteUrl = addText.split('"')
+      const siteUrl: string[] = addText.split('"')
       setCorrectName(siteUrl[1] + 'サーバ')
-      setChatText([
-        ...chatText,
-        {
-          id: id,
-          type: `aHref`,
-          word: addText,
-          user: loginCracker,
-        },
-      ])
+      if (loginCracker !== undefined) {
+        setChatText([
+          ...chatText,
+          {
+            id: id,
+            type: `aHref`,
+            word: addText,
+            user: loginCracker,
+          },
+        ])
+      }
+    } else if (codeCheck(addText, 'script') === true) {
+      if (loginCracker !== undefined) {
+        setChatText([
+          ...chatText,
+          {
+            id: id,
+            type: `normal`,
+            word: addText,
+            user: loginCracker,
+          },
+        ])
+      }
     } else {
       setChatText([
         ...chatText,
@@ -207,7 +336,15 @@ export default function Home(): Promise<void> {
                   </ContextChatText.Provider>
                 </ChatAddText.Provider>
               ) : (
-                <LoginPage userData={userData} />
+                <UserId.Provider value={contextLoginUserId}>
+                  <Show7.Provider value={arrowShow7}>
+                    <Show8.Provider value={arrowShow8}>
+                      <Show9.Provider value={arrowShow9}>
+                        <LoginPage userData={userData} />
+                      </Show9.Provider>
+                    </Show8.Provider>
+                  </Show7.Provider>
+                </UserId.Provider>
               )}
             </ContextLoginCracker.Provider>
           </div>
@@ -222,11 +359,31 @@ export default function Home(): Promise<void> {
           <div className="left_side">
             <DatabaseTable chatText={chatText} />
           </div>
-          <DatabaseTableUser userData={userData} />
+          <UserId.Provider value={contextLoginUserId}>
+            <DatabaseTableUser userData={userData} />
+          </UserId.Provider>
           <span id="fake_saba">
             <AddImageSaba imageText={correctName} />
           </span>
         </div>
+        <Xarrow
+          start="cracker_side"
+          end="main_saba"
+          labels="入力したユーザ，パスワードを送信"
+          showXarrow={show7}
+        />
+        <Xarrow
+          start="main_saba"
+          end="userdata_table"
+          labels="データをもとにDBを確認"
+          showXarrow={show8}
+        />
+        <Xarrow
+          start="main_saba"
+          end="cracker_side"
+          labels="ログイン成功"
+          showXarrow={show9}
+        />
         <Xarrow
           start="cracker_side"
           end="main_saba"
@@ -242,13 +399,13 @@ export default function Home(): Promise<void> {
         <Xarrow
           start="main_saba"
           end="user_side"
-          labals="両者に反映"
+          labels="両者に反映"
           showXarrow={show3}
         />
         <Xarrow
           start="main_saba"
           end="cracker_side"
-          labals="両者に反映"
+          labels="両者に反映"
           showXarrow={show3}
         />
         <Xarrow {...line1} />
