@@ -307,7 +307,7 @@ export default function Home() {
           id: id,
           type: `normal`,
           word: addText,
-          user: loginCracker,
+          user: loginCracker ?? 'sample',
         },
       ])
     }

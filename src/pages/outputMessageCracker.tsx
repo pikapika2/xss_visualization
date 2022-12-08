@@ -21,7 +21,7 @@ type Props = {
     id: number
     type: string
     word: string
-    user: string
+    user?: string
   }[]
 }
 
