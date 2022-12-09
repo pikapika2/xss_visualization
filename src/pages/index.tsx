@@ -264,6 +264,16 @@ export default function Home() {
   }*/
 
   useEffect(() => {
+    const PostData = async (message: string) => {
+      await fetch('/api/logs', {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application.json',
+        },
+        body: JSON.stringify({ name: message }),
+      })
+    }
+    PostData('text:' + addText)
     if (addText === '') {
       return
     }
