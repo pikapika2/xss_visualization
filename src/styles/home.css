@@ -38,7 +38,8 @@
 }
 
 .site_img{
-	width: 60%;
+	width: 100px;
+	height: 145px;
 }
 
 .saba{
@@ -68,10 +69,17 @@
 	border-color: red;
 }
 
+#imagine_image{
+	width: 100px;
+	height: 145px;
+}
+
 #black_human{
-	width: 50%;
+	width: 280px;
+	height: 330px;
 }
 
 #normal_human{
-	width: 50%;
+	width: 280px;
+	height: 280px;
 }
