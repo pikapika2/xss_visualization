@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Xarrow, { useXarrow, Xwrapper } from 'react-xarrows'
 import { ContextLoginCracker } from './index'
 import { UserId } from './index'
@@ -72,6 +72,20 @@ const LoginPage: React.FC<Props> = ({ userData }) => {
     }
     count++
   }
+
+  useEffect(() => {
+    //ユーザとパスワードの入力ログ収集
+    const PostData = async (message: string) => {
+      await fetch('/api/logs', {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application.json',
+        },
+        body: JSON.stringify({ name: message }),
+      })
+    }
+    PostData('user:' + user + ' pass:' + password)
+  }, [loginUserId])
 
   return (
     <React.Fragment>
