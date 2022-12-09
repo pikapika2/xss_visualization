@@ -371,7 +371,7 @@ export default function Home() {
           <Image id="normal_human" src={humanImage} alt="" />
           <span id="imagine_website">
             {imagineWebsiteShow ? (
-              <Image src={imagineWebsiteImage} alt="" /> 
+              <Image src={imagineWebsiteImage} alt="" />
             ) : null}
           </span>
           <div className="left_side">
