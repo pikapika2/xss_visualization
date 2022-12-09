@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 import React, { useState, useContext } from 'react'
+import { ContextLoginCracker } from './index'
 
 type Props = {
   chatText: {
@@ -26,7 +27,7 @@ type Props = {
 }
 
 const DatabaseTable: React.FC<Props> = ({ chatText }) => {
-  console.log(chatText)
+  const { loginCracker, setLoginCracker } = useContext(ContextLoginCracker)
   return (
     <React.Fragment>
       <table id="chat_table" className="table_design">
@@ -38,12 +39,25 @@ const DatabaseTable: React.FC<Props> = ({ chatText }) => {
         </thead>
         <tbody>
           {chatText?.map((item) => {
-            return (
-              <tr key={item.id}>
-                <td className="table_design">{item.word}</td>
-                <td className="table_design">{item.user}</td>
-              </tr>
-            )
+            if (loginCracker === 'admin') {
+              return (
+                <tr key={item.id}>
+                  <td className="table_design">
+                    <input type="text" defaultValue={item.word} />
+                  </td>
+                  <td className="table_design">
+                    <input type="text" defaultValue={item.user} />
+                  </td>
+                </tr>
+              )
+            } else {
+              return (
+                <tr key={item.id}>
+                  <td className="table_design">{item.word}</td>
+                  <td className="table_design">{item.user}</td>
+                </tr>
+              )
+            }
           })}
         </tbody>
       </table>

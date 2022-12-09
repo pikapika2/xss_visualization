@@ -15,7 +15,7 @@ limitations under the License.
 */
 
 import React, { useState, useContext } from 'react'
-import { UserId } from './index'
+import { UserId, ContextLoginCracker } from './index'
 
 type Props = {
   userData: {
@@ -28,6 +28,8 @@ type Props = {
 const DatabaseTableUser: React.FC<Props> = ({ userData }) => {
   //console.log(chatText)
   const { loginUserId, setLoginUserId } = useContext(UserId)
+  const { loginCracker, setLoginCracker } = useContext(ContextLoginCracker)
+
   return (
     <React.Fragment>
       <table className="table_design" id="userdata_table">
@@ -39,7 +41,18 @@ const DatabaseTableUser: React.FC<Props> = ({ userData }) => {
         </thead>
         <tbody>
           {userData?.map((item) => {
-            if (loginUserId === item.id) {
+            if (loginCracker === 'admin') {
+              return (
+                <tr key={item.id}>
+                  <td className="table_design">
+                    <input type="text" defaultValue={item.username} />
+                  </td>
+                  <td className="table_design">
+                    <input type="text" defaultValue={item.password} />
+                  </td>
+                </tr>
+              )
+            } else if (loginUserId === item.id) {
               return (
                 <tr key={item.id}>
                   <td className="table_impact">{item.username}</td>

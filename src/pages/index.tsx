@@ -148,6 +148,7 @@ export default function Home() {
     { id: 1, type: 'normal', word: 'おはよう', user: 'taro' },
   ])
   const [userData, setUserData] = useState([
+    { id: 0, username: 'admin', password: '??????' },
     { id: 1, username: 'taro', password: 'taro123' },
     { id: 2, username: 'jiro', password: 'jiro456' },
     { id: 3, username: 'saburo', password: 'saburo789' },
@@ -158,7 +159,8 @@ export default function Home() {
     undefined
   )
   const [loginUser, setLoginUser] = useState('taro')
-  const [loginUserId, setLoginUserId] = useState(0)
+  const [sqlAble, setSqlAble] = useState(false)
+  const [loginUserId, setLoginUserId] = useState(-1)
   const [show1, setShow1] = useState(false)
   const [show2, setShow2] = useState(false)
   const [show3, setShow3] = useState(false)
@@ -256,13 +258,6 @@ export default function Home() {
     setUserData,
   }
 
-  /*if(process.browser){
-    let start = document.getElementById("cracker_side")
-    let end = document.getElementById("black_human")
-    let link = []
-    link.push(new LeaderLine(start, end))
-  }*/
-
   useEffect(() => {
     const PostData = async (message: string) => {
       await fetch('/api/logs', {
@@ -304,22 +299,24 @@ export default function Home() {
           ...chatText,
           {
             id: id,
-            type: `normal`,
+            type: `script`,
             word: addText,
             user: loginCracker,
           },
         ])
       }
     } else {
-      setChatText([
-        ...chatText,
-        {
-          id: id,
-          type: `normal`,
-          word: addText,
-          user: loginCracker ?? 'sample',
-        },
-      ])
+      if (loginCracker !== undefined) {
+        setChatText([
+          ...chatText,
+          {
+            id: id,
+            type: `normal`,
+            word: addText,
+            user: loginCracker,
+          },
+        ])
+      }
     }
     console.log(chatText)
     id++
@@ -405,15 +402,35 @@ export default function Home() {
               />
             ) : null}
           </span>
-          <div className="left_side">
-            <DatabaseTable chatText={chatText} />
-          </div>
-          <UserId.Provider value={contextLoginUserId}>
-            <DatabaseTableUser userData={userData} />
-          </UserId.Provider>
+          <ContextLoginCracker.Provider value={contextLoginCracker}>
+            <div className="left_side">
+              <DatabaseTable chatText={chatText} />
+            </div>
+            <UserId.Provider value={contextLoginUserId}>
+              <DatabaseTableUser userData={userData} />
+            </UserId.Provider>
+          </ContextLoginCracker.Provider>
           <span id="fake_saba">
             <AddImageSaba imageText={correctName} />
           </span>
+          <br />
+          <div>
+            <a
+              type="button"
+              onClick={() => {
+                setSqlAble(!sqlAble)
+              }}
+            >
+              ▼ログイン時のSQL文▼
+            </a>
+          </div>
+          {sqlAble ? (
+            <p>
+              {
+                "SELECT user,passwd FROM users WHERE user='$user' AND passwd='$passwd’"
+              }
+            </p>
+          ) : null}
         </div>
         <Xarrow
           start="cracker_side"

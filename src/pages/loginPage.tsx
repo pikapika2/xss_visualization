@@ -19,6 +19,8 @@ import Xarrow, { useXarrow, Xwrapper } from 'react-xarrows'
 import { ContextLoginCracker } from './index'
 import { UserId } from './index'
 import { Show7, Show8, Show9 } from './index'
+import injectionCheck from './injectionCheck'
+import userInjectionCheck from './userInjectionCheck'
 import DisplayUrl from './displayUrl'
 
 let count = 0
@@ -41,19 +43,40 @@ const LoginPage: React.FC<Props> = ({ userData }) => {
   const { show9, setShow9 } = useContext(Show9)
 
   const max: number = 20
+  let flag: boolean = false
+
   function checkData() {
     if (count === 0) {
       setShow7(true)
     } else if (count === 1) {
       setShow7(false)
       setShow8(true)
+      if (
+        userInjectionCheck(user) === true ||
+        injectionCheck(password) === true
+      ) {
+        for (let i in userData) {
+          if (userData[i].username === user.split("'")[0]) {
+            setLoginUserId(userData[i].id)
+            flag = true
+          }
+        }
+        setUser(user.split("'")[0])
+      }
       for (let i in userData) {
+        if (userData[i].id === 0) {
+          continue
+        }
         if (
           userData[i].username === user &&
           userData[i].password === password
         ) {
           setLoginUserId(userData[i].id)
+          flag = true
         }
+      }
+      if (flag === false) {
+        count = 9
       }
     } else if (count === 2) {
       setShow8(false)
@@ -61,16 +84,24 @@ const LoginPage: React.FC<Props> = ({ userData }) => {
     } else if (count === 3) {
       setShow9(false)
       setLoginCracker(user)
-      setLoginUserId(0)
+      setLoginUserId(-1)
+      count = -1
+    } else if (count === 10) {
+      alert('ログイン失敗')
+      setShow7(false)
+      setShow8(false)
+      setShow9(false)
+      setLoginUserId(-1)
       count = -1
     } else {
       setShow7(false)
       setShow8(false)
       setShow9(false)
-      setLoginUserId(0)
+      setLoginUserId(-1)
       count = -1
     }
     count++
+    flag = false
   }
 
   useEffect(() => {
