@@ -334,7 +334,13 @@ export default function Home() {
           </div>
           <span id="silent"></span>
           <div className="saba">
-            <Image className="site_img" id="main_saba" src={sabaImage} alt="" />
+            <Image
+              className="site_img"
+              id="main_saba"
+              src={sabaImage}
+              alt=""
+              objectFit="contain"
+            />
             <p>提供サーバ</p>
           </div>
           <div id="cracker_side" className="bulletin_board">
@@ -367,11 +373,26 @@ export default function Home() {
         </div>
         <div className="right_side">
           <p className="code_plaintext">入力された文字列：{addText}</p>
-          <Image id="black_human" src={crackerImage} alt="" />
-          <Image id="normal_human" src={humanImage} alt="" />
+          <Image
+            id="black_human"
+            src={crackerImage}
+            alt=""
+            objectFit="contain"
+          />
+          <Image
+            id="normal_human"
+            src={humanImage}
+            alt=""
+            objectFit="contain"
+          />
           <span id="imagine_website">
             {imagineWebsiteShow ? (
-              <Image src={imagineWebsiteImage} alt="" />
+              <Image
+                id="imagine_image"
+                src={imagineWebsiteImage}
+                alt=""
+                objectFit="contain"
+              />
             ) : null}
           </span>
           <div className="left_side">
