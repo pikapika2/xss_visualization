@@ -339,6 +339,7 @@ export default function Home() {
               id="main_saba"
               src={sabaImage}
               alt=""
+              layout="fill"
               objectFit="contain"
             />
             <p>提供サーバ</p>
@@ -377,17 +378,24 @@ export default function Home() {
             id="black_human"
             src={crackerImage}
             alt=""
+            layout="fill"
             objectFit="contain"
           />
           <Image
             id="normal_human"
             src={humanImage}
             alt=""
+            layout="fill"
             objectFit="contain"
           />
           <span id="imagine_website">
             {imagineWebsiteShow ? (
-              <Image src={imagineWebsiteImage} alt="" objectFit="contain" />
+              <Image
+                src={imagineWebsiteImage}
+                alt=""
+                layout="fill"
+                objectFit="contain"
+              />
             ) : null}
           </span>
           <div className="left_side">
