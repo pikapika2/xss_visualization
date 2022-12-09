@@ -304,22 +304,24 @@ export default function Home() {
           ...chatText,
           {
             id: id,
-            type: `normal`,
+            type: `script`,
             word: addText,
             user: loginCracker,
           },
         ])
       }
     } else {
-      setChatText([
-        ...chatText,
-        {
-          id: id,
-          type: `normal`,
-          word: addText,
-          user: loginCracker ?? 'sample',
-        },
-      ])
+      if (loginCracker !== undefined) {
+        setChatText([
+          ...chatText,
+          {
+            id: id,
+            type: `normal`,
+            word: addText,
+            user: loginCracker,
+          },
+        ])
+      }
     }
     console.log(chatText)
     id++
