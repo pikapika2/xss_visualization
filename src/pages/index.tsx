@@ -372,7 +372,7 @@ export default function Home() {
           <span id="imagine_website">
             {imagineWebsiteShow ? (
               <Image src={imagineWebsiteImage} alt="" /> 
-            ): null}
+            ) : null}
           </span>
           <div className="left_side">
             <DatabaseTable chatText={chatText} />
