@@ -31,7 +31,7 @@ const AddImageSaba: React.FC<Props> = ({ imageText }) => {
 
   return (
     <React.Fragment>
-      <Image src={fakeSabaImage} />
+      <Image src={fakeSabaImage} alt="" />
       <p> {imageText} </p>
     </React.Fragment>
   )
