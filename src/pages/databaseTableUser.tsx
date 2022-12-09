@@ -30,10 +30,6 @@ const DatabaseTableUser: React.FC<Props> = ({ userData }) => {
   const { loginUserId, setLoginUserId } = useContext(UserId)
   const { loginCracker, setLoginCracker } = useContext(ContextLoginCracker)
 
-  function rename(user, value) {
-    user = value
-  }
-
   return (
     <React.Fragment>
       <table className="table_design" id="userdata_table">

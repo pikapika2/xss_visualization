@@ -17,8 +17,8 @@ limitations under the License.
 import React, { useState } from 'react'
 import Xarrow from 'react-xarrows'
 
-const injectionCheck: React.FC<Props> = (password) => {
-  if (password.match(/^'[...]*/)) {
+function injectionCheck(password: string) {
+  if ((password + '').match(/^'[...]*/)) {
     const words = password.split(' ').join('').split("'")
     if (words[1] === 'or' || words[1] === 'OR') {
       if (words[3] === '=') {
