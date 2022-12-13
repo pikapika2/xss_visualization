@@ -48,7 +48,7 @@ const LoginPage: React.FC<Props> = ({ userData }) => {
   const max: number = 20
   let flag: boolean = false
 
-  function setUserAble(user) {
+  function setUserAble(user: string) {
     if (escapeAble === true) {
       setUser(strEscape(user))
     } else {
@@ -56,7 +56,7 @@ const LoginPage: React.FC<Props> = ({ userData }) => {
     }
   }
 
-  function setPassAble(pass) {
+  function setPassAble(pass: string) {
     if (escapeAble === true) {
       setPassword(strEscape(pass))
     } else {
