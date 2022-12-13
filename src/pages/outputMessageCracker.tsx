@@ -51,12 +51,14 @@ const OutputMessageCracker: React.FC<Props> = ({ chatText }) => {
             </React.Fragment>
           )
         } else if (wordArray.type === 'normal') {
-          ;<p
-            key={wordArray.id}
-            dangerouslySetInnerHTML={{
-              __html: wordArray.word,
-            }}
-          ></p>
+          return (
+            <p
+              key={wordArray.id}
+              dangerouslySetInnerHTML={{
+                __html: wordArray.word,
+              }}
+            ></p>
+          )
         } else {
           return <p key={wordArray.id}> 危険なやつ </p>
         }
