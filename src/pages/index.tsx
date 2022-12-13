@@ -414,23 +414,6 @@ export default function Home() {
             <AddImageSaba imageText={correctName} />
           </span>
           <br />
-          <div>
-            <a
-              type="button"
-              onClick={() => {
-                setSqlAble(!sqlAble)
-              }}
-            >
-              ▼ログイン時のSQL文▼
-            </a>
-          </div>
-          {sqlAble ? (
-            <p>
-              {
-                "SELECT user,passwd FROM users WHERE user='$user' AND passwd='$passwd’"
-              }
-            </p>
-          ) : null}
         </div>
         <Xarrow
           start="cracker_side"
