@@ -32,8 +32,22 @@ const OutputMessageUser: React.FC<Props> = ({ chatText }) => {
   return (
     <div className="chat_scroll">
       {chatText?.map((wordArray) => {
-        if (wordArray.type === 'normal') {
-          return <p key={wordArray.id}> {wordArray.word} </p>
+        if (wordArray.type === 'script') {
+          return (
+            <p key={wordArray.id}>
+              {' '}
+              {wordArray.word} (今回はシステム上の都合で無効化します)
+            </p>
+          )
+        } else if (wordArray.type === 'normal') {
+          return (
+            <p
+              key={wordArray.id}
+              dangerouslySetInnerHTML={{
+                __html: wordArray.word,
+              }}
+            ></p>
+          )
         } else if (wordArray.type === 'aHref') {
           return AHref(wordArray.word)
         } else {
