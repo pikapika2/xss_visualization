@@ -29,7 +29,9 @@ const OutputMessageCracker: React.FC<Props> = ({ chatText }) => {
   return (
     <div className="chat_scroll">
       {chatText?.map((wordArray) => {
-        if (wordArray.type === 'script') {
+        if (wordArray.type === 'escape') {
+          return <p key={wordArray.id}>{wordArray.word}</p>
+        } else if (wordArray.type === 'script') {
           return (
             <p key={wordArray.id}>
               {' '}

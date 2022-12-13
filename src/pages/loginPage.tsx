@@ -17,11 +17,12 @@ limitations under the License.
 import React, { useState, useContext, useEffect } from 'react'
 import Xarrow, { useXarrow, Xwrapper } from 'react-xarrows'
 import { ContextLoginCracker } from './index'
-import { UserId } from './index'
+import { UserId, Escape } from './index'
 import { Show7, Show8, Show9 } from './index'
 import injectionCheck from './injectionCheck'
 import userInjectionCheck from './userInjectionCheck'
 import DisplayUrl from './displayUrl'
+import strEscape from './strEscape'
 
 let count = 0
 
@@ -36,6 +37,7 @@ type Props = {
 const LoginPage: React.FC<Props> = ({ userData }) => {
   const { loginCracker, setLoginCracker } = useContext(ContextLoginCracker)
   const { loginUserId, setLoginUserId } = useContext(UserId)
+  const { escapeAble, setEscapeAble } = useContext(Escape)
   const [user, setUser] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const { show7, setShow7 } = useContext(Show7)
@@ -45,6 +47,22 @@ const LoginPage: React.FC<Props> = ({ userData }) => {
 
   const max: number = 20
   let flag: boolean = false
+
+  function setUserAble(user: string) {
+    if (escapeAble === true) {
+      setUser(strEscape(user))
+    } else {
+      setUser(user)
+    }
+  }
+
+  function setPassAble(pass: string) {
+    if (escapeAble === true) {
+      setPassword(strEscape(pass))
+    } else {
+      setPassword(pass)
+    }
+  }
 
   function checkData() {
     if (count === 0) {
@@ -128,7 +146,7 @@ const LoginPage: React.FC<Props> = ({ userData }) => {
         <input
           className="textbox"
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            setUser(event.target.value)
+            setUserAble(event.target.value)
           }
           maxLength={max}
         />
@@ -136,7 +154,7 @@ const LoginPage: React.FC<Props> = ({ userData }) => {
         <input
           className="textbox"
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            setPassword(event.target.value)
+            setPassAble(event.target.value)
           }
           maxLength={max}
         />
@@ -149,6 +167,7 @@ const LoginPage: React.FC<Props> = ({ userData }) => {
         </button>
       </div>
       <div>
+        <br />
         <a
           type="button"
           onClick={() => {

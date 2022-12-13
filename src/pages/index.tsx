@@ -28,6 +28,7 @@ import LoginPage from './loginPage'
 import DatabaseTable from './databaseTable'
 import DatabaseTableUser from './databaseTableUser'
 import DisplayUrl from './displayUrl'
+import strEscape from './strEscape'
 import Image from 'next/image'
 import phishingImage from '../image/phishing.png'
 import crackerImage from '../image/warumono.png'
@@ -89,6 +90,11 @@ type Show9 = {
   setShow9: React.Dispatch<React.SetStateAction<boolean>>
 }
 
+type Escape = {
+  escapeAble: boolean
+  setEscapeAble: React.Dispatch<React.SetStateAction<boolean>>
+}
+
 type ChatAddText = {
   addText: string
   setAddText: React.Dispatch<React.SetStateAction<string>>
@@ -133,6 +139,7 @@ export const Show6 = createContext({} as Show6)
 export const Show7 = createContext({} as Show7)
 export const Show8 = createContext({} as Show8)
 export const Show9 = createContext({} as Show9)
+export const Escape = createContext({} as Escape)
 export const ChatAddText = createContext({} as ChatAddText)
 export const ContextChatText = createContext({} as ContextChatText)
 export const ContextLoginCracker = createContext({} as ContextLoginCracker)
@@ -159,7 +166,7 @@ export default function Home() {
     undefined
   )
   const [loginUser, setLoginUser] = useState('taro')
-  const [sqlAble, setSqlAble] = useState(false)
+  const [escapeAble, setEscapeAble] = useState(false)
   const [loginUserId, setLoginUserId] = useState(-1)
   const [show1, setShow1] = useState(false)
   const [show2, setShow2] = useState(false)
@@ -253,12 +260,22 @@ export default function Home() {
     show9,
     setShow9,
   }
+  const contextEscape = {
+    escapeAble,
+    setEscapeAble,
+  }
   const contextUserData = {
     userData,
     setUserData,
   }
 
   useEffect(() => {
+    let text: string
+    if (escapeAble === true) {
+      text = strEscape(addText)
+    } else {
+      text = addText
+    }
     const PostData = async (message: string) => {
       await fetch('/api/logs', {
         method: 'POST',
@@ -268,19 +285,31 @@ export default function Home() {
         body: JSON.stringify({ name: message }),
       })
     }
-    PostData('text:' + addText)
+    PostData('text:' + text)
     if (addText === '') {
       return
     }
-    const resultATag: boolean = codeCheck(addText, 'atag')
-    if (resultATag === true) {
+    const resultATag: boolean = codeCheck(text, 'atag')
+    if (escapeAble === true) {
+      if (loginCracker !== undefined) {
+        setChatText([
+          ...chatText,
+          {
+            id: id,
+            type: `escape`,
+            word: text,
+            user: loginCracker,
+          },
+        ])
+      }
+    } else if (resultATag === true) {
       if (aTagFlag === false) {
         aTagFlag = true
       } else {
         alert('同じ攻撃方法は使えない仕様です')
         return
       }
-      const siteUrl: string[] = addText.split('"')
+      const siteUrl: string[] = text.split('"')
       setCorrectName(siteUrl[1] + 'サーバ')
       if (loginCracker !== undefined) {
         setChatText([
@@ -288,19 +317,19 @@ export default function Home() {
           {
             id: id,
             type: `aHref`,
-            word: addText,
+            word: text,
             user: loginCracker,
           },
         ])
       }
-    } else if (codeCheck(addText, 'script') === true) {
+    } else if (codeCheck(text, 'script') === true) {
       if (loginCracker !== undefined) {
         setChatText([
           ...chatText,
           {
             id: id,
             type: `script`,
-            word: addText,
+            word: text,
             user: loginCracker,
           },
         ])
@@ -312,7 +341,7 @@ export default function Home() {
           {
             id: id,
             type: `normal`,
-            word: addText,
+            word: text,
             user: loginCracker,
           },
         ])
@@ -349,37 +378,50 @@ export default function Home() {
               objectFit="contain"
             />
             <p>提供サーバ</p>
+            {escapeAble ? (
+              <button onClick={() => setEscapeAble(false)}>
+                サニタイジング処理ON
+              </button>
+            ) : (
+              <button onClick={() => setEscapeAble(true)}>
+                サニタイジング処理OFF
+              </button>
+            )}
           </div>
           <div id="cracker_side" className="bulletin_board">
             <ContextLoginCracker.Provider value={contextLoginCracker}>
-              {loginCracker ? (
-                <ChatAddText.Provider value={chatAddText}>
-                  <ContextChatText.Provider value={contextChatText}>
-                    <Show1.Provider value={arrowShow1}>
-                      <Show2.Provider value={arrowShow2}>
-                        <Show3.Provider value={arrowShow3}>
-                          <CrackerSide />
-                        </Show3.Provider>
-                      </Show2.Provider>
-                    </Show1.Provider>
-                  </ContextChatText.Provider>
-                </ChatAddText.Provider>
-              ) : (
-                <UserId.Provider value={contextLoginUserId}>
-                  <Show7.Provider value={arrowShow7}>
-                    <Show8.Provider value={arrowShow8}>
-                      <Show9.Provider value={arrowShow9}>
-                        <LoginPage userData={userData} />
-                      </Show9.Provider>
-                    </Show8.Provider>
-                  </Show7.Provider>
-                </UserId.Provider>
-              )}
+              <Escape.Provider value={contextEscape}>
+                {loginCracker ? (
+                  <ChatAddText.Provider value={chatAddText}>
+                    <ContextChatText.Provider value={contextChatText}>
+                      <Show1.Provider value={arrowShow1}>
+                        <Show2.Provider value={arrowShow2}>
+                          <Show3.Provider value={arrowShow3}>
+                            <CrackerSide />
+                            <p className="code_plaintext">
+                              入力された文字列：{addText}
+                            </p>
+                          </Show3.Provider>
+                        </Show2.Provider>
+                      </Show1.Provider>
+                    </ContextChatText.Provider>
+                  </ChatAddText.Provider>
+                ) : (
+                  <UserId.Provider value={contextLoginUserId}>
+                    <Show7.Provider value={arrowShow7}>
+                      <Show8.Provider value={arrowShow8}>
+                        <Show9.Provider value={arrowShow9}>
+                          <LoginPage userData={userData} />
+                        </Show9.Provider>
+                      </Show8.Provider>
+                    </Show7.Provider>
+                  </UserId.Provider>
+                )}
+              </Escape.Provider>
             </ContextLoginCracker.Provider>
           </div>
         </div>
         <div className="right_side">
-          <p className="code_plaintext">入力された文字列：{addText}</p>
           <Image
             id="black_human"
             src={crackerImage}
