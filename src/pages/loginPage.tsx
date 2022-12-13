@@ -41,6 +41,7 @@ const LoginPage: React.FC<Props> = ({ userData }) => {
   const { show7, setShow7 } = useContext(Show7)
   const { show8, setShow8 } = useContext(Show8)
   const { show9, setShow9 } = useContext(Show9)
+  const [sqlAble, setSqlAble] = useState(false)
 
   const max: number = 20
   let flag: boolean = false
@@ -147,6 +148,32 @@ const LoginPage: React.FC<Props> = ({ userData }) => {
           ログイン
         </button>
       </div>
+      <div>
+        <a
+          type="button"
+          onClick={() => {
+            setSqlAble(!sqlAble)
+          }}
+        >
+          ▼ログイン時のSQL文と実際に当てはめたSQL文▼
+        </a>
+      </div>
+      {sqlAble ? (
+        <div>
+          <p>
+            {
+              "SELECT user,passwd FROM users WHERE user='$user' AND passwd='$passwd’"
+            }
+          </p>
+          <p>
+            {"SELECT user,passwd FROM users WHERE user='" +
+              user +
+              "' AND passwd='" +
+              password +
+              '’'}
+          </p>
+        </div>
+      ) : null}
     </React.Fragment>
   )
 }
