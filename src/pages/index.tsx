@@ -460,43 +460,45 @@ export default function Home() {
         <Xarrow
           start="cracker_side"
           end="main_saba"
-          labels="入力したユーザ，パスワードを送信"
+          labels={
+            <p className="white_back">入力したユーザ，パスワードを送信</p>
+          }
           showXarrow={show7}
         />
         <Xarrow
           start="main_saba"
           end="userdata_table"
-          labels="データをもとにDBを確認"
+          labels={<p className="white_back">データをもとにDBを確認</p>}
           showXarrow={show8}
         />
         <Xarrow
           start="main_saba"
           end="cracker_side"
-          labels="ログイン成功"
+          labels={<p className="white_back">ログイン成功</p>}
           showXarrow={show9}
         />
         <Xarrow
           start="cracker_side"
           end="main_saba"
-          labels="入力した文字を送信"
+          labels={<p className="white_back">入力した文字を送信</p>}
           showXarrow={show1}
         />
         <Xarrow
           start="main_saba"
           end="chat_table"
-          labels={addText + 'をDBに反映'}
+          labels={<p className="white_back">{addText}をDBに反映</p>}
           showXarrow={show2}
         />
         <Xarrow
           start="main_saba"
           end="user_side"
-          labels="両者に反映"
+          labels={<p className="white_back">両者に反映</p>}
           showXarrow={show3}
         />
         <Xarrow
           start="main_saba"
           end="cracker_side"
-          labels="両者に反映"
+          labels={<p className="white_back">両者に反映</p>}
           showXarrow={show3}
         />
         <Xarrow {...line1} />
