@@ -69,6 +69,10 @@
 	border-color: red;
 }
 
+.white_back{
+	background-color: white;
+}
+
 #imagine_image{
 	width: 100px;
 	height: 145px;
