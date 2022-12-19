@@ -422,6 +422,18 @@ export default function Home() {
           </div>
         </div>
         <div className="right_side">
+          <div className="balloon-left">
+            <ContextLoginCracker.Provider value={contextLoginCracker}>
+              <div className="left_side">
+                <p className="site_name">データベーステーブル</p>
+                <DatabaseTable chatText={chatText} />
+              </div>
+              <UserId.Provider value={contextLoginUserId}>
+                <DatabaseTableUser userData={userData} />
+              </UserId.Provider>
+            </ContextLoginCracker.Provider>
+          </div>
+          <br />
           <Image
             id="black_human"
             src={crackerImage}
@@ -444,14 +456,6 @@ export default function Home() {
               />
             ) : null}
           </span>
-          <ContextLoginCracker.Provider value={contextLoginCracker}>
-            <div className="left_side">
-              <DatabaseTable chatText={chatText} />
-            </div>
-            <UserId.Provider value={contextLoginUserId}>
-              <DatabaseTableUser userData={userData} />
-            </UserId.Provider>
-          </ContextLoginCracker.Provider>
           <span id="fake_saba">
             <AddImageSaba imageText={correctName} />
           </span>
