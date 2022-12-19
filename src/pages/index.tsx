@@ -499,7 +499,7 @@ export default function Home() {
           end="cracker_side"
           labels={
             <p className="white_back">
-              <font color="red">SQLインジェクション</font>により
+              <span className="font_red">SQLインジェクション</span>により
               <br />
               不正ログイン成功
             </p>
