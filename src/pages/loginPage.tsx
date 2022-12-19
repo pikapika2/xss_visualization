@@ -148,6 +148,7 @@ const LoginPage: React.FC<Props> = ({ userData }) => {
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
             setUserAble(event.target.value)
           }
+          placeholder={'上限' + max + '文字'}
           maxLength={max}
         />
         <p>パスワード</p>
@@ -156,6 +157,7 @@ const LoginPage: React.FC<Props> = ({ userData }) => {
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
             setPassAble(event.target.value)
           }
+          placeholder={'上限' + max + '文字'}
           maxLength={max}
         />
         <button

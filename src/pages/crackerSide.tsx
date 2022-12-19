@@ -39,6 +39,7 @@ const CrackerSide: React.FC = () => {
           }
           className="textbox"
           defaultValue="initial value"
+          placeholder={'上限' + max + '文字'}
           maxLength={max}
         />
         <ChatArrow text={text} />
