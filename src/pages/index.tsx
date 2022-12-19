@@ -90,6 +90,11 @@ type Show9 = {
   setShow9: React.Dispatch<React.SetStateAction<boolean>>
 }
 
+type Show10 = {
+  show10: boolean
+  setShow10: React.Dispatch<React.SetStateAction<boolean>>
+}
+
 type Escape = {
   escapeAble: boolean
   setEscapeAble: React.Dispatch<React.SetStateAction<boolean>>
@@ -139,6 +144,7 @@ export const Show6 = createContext({} as Show6)
 export const Show7 = createContext({} as Show7)
 export const Show8 = createContext({} as Show8)
 export const Show9 = createContext({} as Show9)
+export const Show10 = createContext({} as Show10)
 export const Escape = createContext({} as Escape)
 export const ChatAddText = createContext({} as ChatAddText)
 export const ContextChatText = createContext({} as ContextChatText)
@@ -177,6 +183,7 @@ export default function Home() {
   const [show7, setShow7] = useState(false)
   const [show8, setShow8] = useState(false)
   const [show9, setShow9] = useState(false)
+  const [show10, setShow10] = useState(false)
   //後で配列化
   const line1: any = {
     start: 'silent',
@@ -259,6 +266,10 @@ export default function Home() {
   const arrowShow9 = {
     show9,
     setShow9,
+  }
+  const arrowShow10 = {
+    show10,
+    setShow10,
   }
   const contextEscape = {
     escapeAble,
@@ -411,7 +422,9 @@ export default function Home() {
                     <Show7.Provider value={arrowShow7}>
                       <Show8.Provider value={arrowShow8}>
                         <Show9.Provider value={arrowShow9}>
-                          <LoginPage userData={userData} />
+                          <Show10.Provider value={arrowShow10}>
+                            <LoginPage userData={userData} />
+                          </Show10.Provider>
                         </Show9.Provider>
                       </Show8.Provider>
                     </Show7.Provider>
@@ -480,6 +493,18 @@ export default function Home() {
           end="cracker_side"
           labels={<p className="white_back">ログイン成功</p>}
           showXarrow={show9}
+        />
+        <Xarrow
+          start="main_saba"
+          end="cracker_side"
+          labels={
+            <p className="white_back">
+              <span className="font_red">SQLインジェクション</span>により
+              <br />
+              不正ログイン成功
+            </p>
+          }
+          showXarrow={show10}
         />
         <Xarrow
           start="cracker_side"

@@ -18,7 +18,7 @@ import React, { useState } from 'react'
 import Xarrow from 'react-xarrows'
 
 function injectionCheck(password: string) {
-  if ((password + '').match(/^'[...]*/)) {
+  if ((password + '').match(/(^'|[\w-]+')[...]*/)) {
     const words = password.split(' ').join('').split("'")
     if (words[1] === 'or' || words[1] === 'OR') {
       if (words[3] === '=') {
