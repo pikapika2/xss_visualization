@@ -18,7 +18,7 @@ import React, { useState, useContext, useEffect } from 'react'
 import Xarrow, { useXarrow, Xwrapper } from 'react-xarrows'
 import { ContextLoginCracker } from './index'
 import { UserId, Escape } from './index'
-import { Show7, Show8, Show9 } from './index'
+import { Show7, Show8, Show9, Show10 } from './index'
 import injectionCheck from './injectionCheck'
 import userInjectionCheck from './userInjectionCheck'
 import DisplayUrl from './displayUrl'
@@ -34,6 +34,8 @@ type Props = {
   }[]
 }
 
+let flagInjection: boolean = false
+
 const LoginPage: React.FC<Props> = ({ userData }) => {
   const { loginCracker, setLoginCracker } = useContext(ContextLoginCracker)
   const { loginUserId, setLoginUserId } = useContext(UserId)
@@ -43,6 +45,7 @@ const LoginPage: React.FC<Props> = ({ userData }) => {
   const { show7, setShow7 } = useContext(Show7)
   const { show8, setShow8 } = useContext(Show8)
   const { show9, setShow9 } = useContext(Show9)
+  const { show10, setShow10 } = useContext(Show10)
   const [sqlAble, setSqlAble] = useState(false)
 
   const max: number = 20
@@ -78,6 +81,7 @@ const LoginPage: React.FC<Props> = ({ userData }) => {
           if (userData[i].username === user.split("'")[0]) {
             setLoginUserId(userData[i].id)
             flag = true
+            flagInjection = true
           }
         }
         setUser(user.split("'")[0])
@@ -99,11 +103,17 @@ const LoginPage: React.FC<Props> = ({ userData }) => {
       }
     } else if (count === 2) {
       setShow8(false)
-      setShow9(true)
+      if (flagInjection === true) {
+        setShow10(true)
+      } else {
+        setShow9(true)
+      }
     } else if (count === 3) {
       setShow9(false)
+      setShow10(false)
       setLoginCracker(user)
       setLoginUserId(-1)
+      flagInjection = false
       count = -1
     } else if (count === 10) {
       alert('ログイン失敗')

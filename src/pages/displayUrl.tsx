@@ -23,7 +23,6 @@ type Props = {
 }
 
 const DisplayUrl: React.FC<Props> = (username) => {
-  console.log(username)
   if (username.username === '') {
     return (
       <React.Fragment>
