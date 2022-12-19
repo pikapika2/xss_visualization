@@ -34,7 +34,7 @@ const DatabaseTable: React.FC<Props> = ({ chatText }) => {
         <thead>
           <tr>
             <th className="table_design">メッセージ</th>
-            <th className="table_design">ユーザ</th>
+            <th className="table_design">ユーザ名</th>
           </tr>
         </thead>
         <tbody>
