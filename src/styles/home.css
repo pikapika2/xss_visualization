@@ -76,7 +76,7 @@
 .balloon-left {
   position: relative;
   display: inline-block;
-  margin: 10.5em 0 1.5em 20px;
+  margin: 5.5em 0 1.5em 20px;
   padding: 7px 20px;
   min-width: 70%;
   max-width: 100%;
@@ -131,4 +131,9 @@
 #normal_human{
 	width: 280px;
 	height: 280px;
+}
+
+#sailab{
+	width: 20px;
+	height: 20px;
 }
