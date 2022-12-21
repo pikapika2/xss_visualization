@@ -35,6 +35,7 @@ import crackerImage from '../image/warumono.png'
 import humanImage from '../image/computer_woman.png'
 import sabaImage from '../image/mainsaba.png'
 import imagineWebsiteImage from '../image/imagine_website.png'
+import sailabImage from '../image/sai-lab.png'
 
 type WebsiteShow = {
   imagineWebsiteShow: boolean
@@ -435,6 +436,12 @@ export default function Home() {
           </div>
         </div>
         <div className="right_side">
+          <div className="right_side">
+            <span>
+              <Image id="sailab" src={sailabImage} alt="" objectFit="contain" />
+            </span>
+            <span>最所研究室</span>
+          </div>
           <div className="balloon-left">
             <ContextLoginCracker.Provider value={contextLoginCracker}>
               <div className="left_side">
