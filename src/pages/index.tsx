@@ -480,6 +480,12 @@ export default function Home() {
             <AddImageSaba imageText={correctName} />
           </span>
           <br />
+          <a
+            className="right_side"
+            href="https://forms.office.com/Pages/ResponsePage.aspx?id=3nVDIlCDKEiNt7Yd_XlR6jqtvukk28FAlMbtIfGM8_NUNE5YMldISUI2VlgyOUNLSURONkNBRkQ2SS4u"
+          >
+            利用者アンケートはこちら
+          </a>
         </div>
         <Xarrow
           start="cracker_side"
