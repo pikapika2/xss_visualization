@@ -45,7 +45,7 @@
     "jest": "27.5.1",
     "lint-staged": "13.1.1",
     "prettier": "2.8.4",
-    "stylelint": "15.0.0",
+    "stylelint": "15.1.0",
     "stylelint-config-recommended-scss": "8.0.0",
     "stylelint-scss": "4.3.0",
     "ts-jest": "27.1.5",
