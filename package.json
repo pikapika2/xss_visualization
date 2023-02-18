@@ -35,7 +35,7 @@
     "react-xarrows": "^2.0.2"
   },
   "devDependencies": {
-    "@testing-library/react": "13.4.0",
+    "@testing-library/react": "14.0.0",
     "@types/jest": "27.5.2",
     "@types/node": "18.14.0",
     "@types/react": "18.0.28",
