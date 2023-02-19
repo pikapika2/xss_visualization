@@ -1,3 +1,23 @@
+body{
+	font-size: 100%;
+}
+
+p{
+	font-size: 20px;
+	margin: 8px;
+}
+th,td{
+	font-size: 20px;
+}
+
+input{
+	font-size: 20px;
+}
+
+button{
+	font-size: 20px;
+}
+
 .left_side{
 	width: 49%;
 	float: left;
@@ -10,8 +30,8 @@
 
 .bulletin_board{
 	border: 2px solid;
-	height: 250px;
-	width: 80%;
+	height: 270px;
+	width: 85%;
 
 }
 
@@ -28,7 +48,7 @@
 }
 
 .site_name{
-	font-size: 20px;
+	font-size: 24px;
 	font-weight: bold;
 	border: 1px solid;
 	border-color: blue;
@@ -85,6 +105,7 @@
   background: #FFF;
   border: solid 3px #555;
   box-sizing: border-box;
+  z-index: -10;
 }
 
 .balloon-left:before {

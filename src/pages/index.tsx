@@ -528,7 +528,17 @@ export default function Home() {
         <Xarrow
           start="main_saba"
           end="chat_table"
-          labels={<p className="white_back">{addText}をDBに反映</p>}
+          startAnchor="bottom"
+          endAnchor="bottom"
+          labels={{
+            start: (
+              <p className="white_back">
+                {addText}
+                <br />
+                を反映
+              </p>
+            ),
+          }}
           showXarrow={show2}
         />
         <Xarrow
