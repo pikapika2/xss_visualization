@@ -450,7 +450,9 @@ export default function Home() {
                 <DatabaseTable chatText={chatText} />
               </div>
               <UserId.Provider value={contextLoginUserId}>
-                <DatabaseTableUser userData={userData} />
+                <div>
+                  <DatabaseTableUser userData={userData} />
+                </div>
               </UserId.Provider>
             </ContextLoginCracker.Provider>
           </div>
@@ -477,6 +479,7 @@ export default function Home() {
               />
             ) : null}
           </span>
+          <br />
           <span id="fake_saba">
             <AddImageSaba imageText={correctName} />
           </span>
