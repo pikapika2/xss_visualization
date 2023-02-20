@@ -410,6 +410,7 @@ export default function Home() {
                         <Show2.Provider value={arrowShow2}>
                           <Show3.Provider value={arrowShow3}>
                             <CrackerSide />
+                            <br />
                             <p className="code_plaintext">
                               入力された文字列：{addText}
                             </p>

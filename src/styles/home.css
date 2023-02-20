@@ -2,20 +2,20 @@ body{
 	font-size: 100%;
 }
 
-p{
-	font-size: 20px;
+p,span{
+	font-size: 22px;
 	margin: 8px;
 }
 th,td{
-	font-size: 20px;
+	font-size: 22px;
 }
 
 input{
-	font-size: 20px;
+	font-size: 22px;
 }
 
 button{
-	font-size: 20px;
+	font-size: 22px;
 }
 
 .left_side{
@@ -30,8 +30,8 @@ button{
 
 .bulletin_board{
 	border: 2px solid;
-	height: 270px;
-	width: 85%;
+	height: 260px;
+	width: 90%;
 
 }
 
@@ -68,7 +68,7 @@ button{
 }
 
 .textbox{
-	width: 70%;
+	width: 60%;
 }
 
 .code_plaintext{
