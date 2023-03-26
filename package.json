@@ -47,7 +47,7 @@
     "prettier": "2.8.7",
     "stylelint": "15.3.0",
     "stylelint-config-recommended-scss": "9.0.1",
-    "stylelint-scss": "4.5.0",
+    "stylelint-scss": "4.6.0",
     "ts-jest": "27.1.5",
     "typescript": "5.0.2"
   }
